@@ -1,0 +1,7 @@
+<App Theme="Basic">
+    <StackPanel>
+        <Button />
+        <Switch />
+        <Slider />
+    </StackPanel>
+</App>
