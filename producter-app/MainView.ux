@@ -1,7 +1,63 @@
-<App Theme="Basic">
-    <StackPanel>
-        <Button />
-        <Switch />
-        <Slider />
-    </StackPanel>
+<App Background="#fff">
+	<JavaScript File="Controller/MainViewController.js" />
+	<Panel>
+
+		<DockPanel>
+			<StackPanel Dock="Top" Background="#fff">
+				<Panel Height="80">
+						<Rectangle CornerRadius="0" Alignment="Center">
+							<Stroke Width="2" Brush="#000"/>
+							<Text Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+						</Rectangle>
+				</Panel>
+			</StackPanel>
+
+			<Panel DockPanel.Dock="Fill">
+				<PageControl ux:Name="pages">
+					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
+					<Page ux:Name="articlePage" Background="#fff">
+						<ActivatingAnimation>
+							<Change TabActiveIndicatorX.Value="0"/>
+						</ActivatingAnimation>
+					</Page>
+					<Page ux:Name="videoPage" Background="#fff">
+						<ActivatingAnimation>
+							<Change TabActiveIndicatorX.Value="100"/>
+						</ActivatingAnimation>
+					</Page>
+					<Page ux:Name="settingsPage" Background="#fff">
+						<ActivatingAnimation>
+							<Change TabActiveIndicatorX.Value="200"/>
+						</ActivatingAnimation>
+					</Page>
+				</PageControl>
+			</Panel>
+
+			<Panel DockPanel.Dock="Bottom">
+				<Rectangle ux:Name="TabActiveIndicator" Height="3" Fill="#000" Width="100" Alignment="Bottom" X="0"/>
+
+				<Grid ColumnData="100,100,100" Height="45" >
+					<Panel ux:Name="articleTab" Background="#fff">
+						<Text Value="Article" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+						<Clicked>
+							<Set pages.Active="articlePage" />
+						</Clicked>
+					</Panel>
+					<Panel ux:Name="videoTab" Background="#fff">
+						<Text Value="Video" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+						<Clicked>
+							<Set pages.Active="videoPage" />
+						</Clicked>
+					</Panel>
+					<Panel ux:Name="settingsTab" Background="#fff">
+						<Text Value="Setting" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+						<Clicked>
+							<Set pages.Active="settingsPage" />
+						</Clicked>
+					</Panel>
+				</Grid>
+
+			</Panel>
+		</DockPanel>
+	</Panel>
 </App>
