@@ -1,4 +1,5 @@
 var Observable = require('FuseJS/Observable');
+var Moment = require('Moment');
 var ServerPath = "https://api.apple-cloudkit.com/database/1/";
 var CloudIdentifier = "iCloud.kevinzhow.Producter";
 var Enviroment = "development"
@@ -12,14 +13,14 @@ var articleRequest = {
 	query: {
 		recordType: "article",
 		filterBy: [{
-				comparator:"EQUALS",
-				fieldName:"type",
+				comparator: "EQUALS",
+				fieldName: "type",
 				fieldValue:{
 						value: "article"
 				},
         sortBy: [{
-            fieldName:"article_id",
-            ascending: true
+            fieldName: "article_id",
+            ascending: false
         }]
 		}]
 	}
@@ -50,12 +51,14 @@ fetch(articleQuery, {
 	 for (var i = 0; i < records.length; i++) {
 		 var record = records[i];
 		 var record_fields = records[i].fields;
-		 var article = {title:record_fields.title.value,
-		 	author: record_fields.author.value,
-		 	short_desc: record_fields.description.value,
-			content: record_fields.content.value,
-			type: record_fields.type.value,
-		 	created_at: record.created.timestamp}
+		 var article = {
+			 title:record_fields.title.value,
+			 	author: record_fields.author.value,
+			 	short_desc: record_fields.description.value,
+				content: record_fields.content.value,
+				type: record_fields.type.value,
+			 	created_at: Moment(record.created.timestamp).fromNow()
+			}
 		 	article.subtitle = article.author + " " + article.created_at
 		 	articles.add(new Article(article));
 	 }

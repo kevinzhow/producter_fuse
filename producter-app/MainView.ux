@@ -4,6 +4,7 @@
 	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
 	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
 	<Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
+	<JavaScript File="assets/js/moment.min.js" ux:Global="Moment"/>
 	<Panel>
 		<!-- NavigationBar -->
 		<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top">
@@ -52,7 +53,7 @@
 
 		<!-- Page -->
 		<Panel Height="100%">
-			<PageControl ux:Name="pages" Active="videoPage">
+			<PageControl ux:Name="pages" Active="articlePage">
 				<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 				<Page ux:Name="articlePage" Background="#fff">
 					<!-- Animation -->
