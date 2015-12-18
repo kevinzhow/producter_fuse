@@ -1,4 +1,4 @@
-<App Background="#fff">
+<App Background="#fff" Theme="Basic">
   <iOS.StatusBarConfig IsVisible="false"/>
 	<JavaScript File="Controller/MainViewController.js" />
 	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
@@ -14,6 +14,7 @@
 					<WhileDisabled>
 					    <Change NavigationBarContainer.Y="-80"  Duration="0.3"
                     Easing="CircularInOut"/>
+							<Change NavigationBarContainer.Opacity="0"  Duration="0.3"/>
 					</WhileDisabled>
 			</Panel>
 		</StackPanel>
@@ -52,7 +53,7 @@
 
 		<DockPanel>
 			<Panel DockPanel.Dock="Fill">
-				<PageControl ux:Name="pages" Active="articlePage">
+				<PageControl ux:Name="pages" Active="settingsPage">
 					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 					<Page ux:Name="articlePage" Background="#fff">
 						<!-- Animation -->
@@ -98,6 +99,7 @@
 							<Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
 							<Change NavigationBar.IsEnabled="False"/>
 						</ActivatingAnimation>
+						<Settings/>
 					</Page>
 				</PageControl>
 			</Panel>
