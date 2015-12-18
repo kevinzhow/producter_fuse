@@ -53,7 +53,7 @@
 
 		<!-- Page -->
 		<Panel Height="100%">
-			<PageControl ux:Name="pages" Active="articlePage">
+			<PageControl ux:Name="pages" Active="videoPage">
 				<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 				<Page ux:Name="articlePage" Background="#fff">
 					<!-- Animation -->

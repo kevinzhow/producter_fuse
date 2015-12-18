@@ -52,12 +52,12 @@ fetch(articleQuery, {
 		 var record = records[i];
 		 var record_fields = records[i].fields;
 		 var article = {
-			 title:record_fields.title.value,
-			 	author: record_fields.author.value,
-			 	short_desc: record_fields.description.value,
+				title:record_fields.title.value,
+				author: record_fields.author.value,
+				short_desc: record_fields.description.value,
 				content: record_fields.content.value,
 				type: record_fields.type.value,
-			 	created_at: Moment(record.created.timestamp).fromNow()
+				created_at: Moment(record.created.timestamp).fromNow()
 			}
 		 	article.subtitle = article.author + " " + article.created_at
 		 	articles.add(new Article(article));
@@ -71,12 +71,10 @@ fetch(articleQuery, {
 
 function Video(resource) {
 	this.resource = resource;
-	this.isSelected = Observable(false);
-	this.indicateModeChange = Observable(false);
 }
 
 videos = Observable();
-for (i = 0; i < 21; i++) {
+for (i = 0; i < 10; i++) {
 	videos.add(new Video({title:"iOS With Girlfriend " + i,
 	poster: 'assets/images/demo.jpg',
 	created_at: (i+1) +' days ago'}));
