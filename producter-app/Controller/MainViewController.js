@@ -39,58 +39,30 @@ function Video(resource) {
 videos = Observable();
 for (i = 0; i < 21; i++) {
 	videos.add(new Video({title:"iOS With Girlfriend " + i,
-	poster: 'assets/images/demo.png',
+	poster: 'assets/images/demo.jpg',
 	created_at: (i+1) +' days ago'}));
 }
-
-selectionMode = Observable(false);
-numberOfSelected = Observable(0);
 
 title = Observable(function () {
 		titleData = {name: 'iOS With Girl Friend'}
 		return titleData;
 });
 
-function goToSelectionMode(args) {
-	if (selectionMode.value === true) return;
-	selectionMode.value = true;
-	args.data.indicateModeChange.value = true;
-	args.data.isSelected.value = true;
-	numberOfSelected.value = 1;
-}
+NavigationBarIsEnabled = Observable(true);
 
-function toggleSelect(args) {
-	if (selectionMode.value === false) return;
-	if (args.data.isSelected.value === false) {
-		numberOfSelected.value = numberOfSelected.value + 1;
+function disableNavigationBar() {
+	console.log("Disable NavigationBar");
+	if (NavigationBarIsEnabled.value) {
+		NavigationBarIsEnabled.value = false
 	} else {
-		numberOfSelected.value = numberOfSelected.value - 1;
-		if (numberOfSelected.value === 0) {
-			selectionMode.value = false;
-		}
+		NavigationBarIsEnabled.value = true
 	}
-	args.data.isSelected.value = !args.data.isSelected.value;
-}
-
-function deleteSelected(args) {
-	pictures.removeWhere(function (p) {
-		return p.isSelected.value === true;
-	});
-	numberOfSelected.value = 0;
-	selectionMode.value = false;
-}
-
-function nullModeChange(args) {
-	args.data.indicateModeChange.value = false;
 }
 
 module.exports = {
 	articles: articles,
 	videos: videos,
-	selectionMode : selectionMode,
-	goToSelectionMode : goToSelectionMode,
-	toggleSelect : toggleSelect,
+	disableNavigationBar: disableNavigationBar,
+	NavigationBarIsEnabled: NavigationBarIsEnabled,
 	title : title,
-	deleteSelected : deleteSelected,
-	nullModeChange : nullModeChange
 };

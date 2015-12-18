@@ -1,19 +1,50 @@
 <App Background="#fff">
+  <iOS.StatusBarConfig IsVisible="false"/>
 	<JavaScript File="Controller/MainViewController.js" />
-	<Font File="assets/fonts/AlegreyaSans-Bold.otf" ux:Global="AlegreyaSans-Bold" />
-	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Lato-Bold" />
-	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Lato-Light" />
 	<Panel>
-		<DockPanel>
-			<StackPanel Dock="Top" Background="#fff">
-				<Panel ux:Name="NavigationBar" Height="80">
-						<Rectangle CornerRadius="0" Alignment="Center">
-							<Stroke Width="2" Brush="#000"/>
-							<Text Font="Lato-Bold" FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
-						</Rectangle>
-				</Panel>
-			</StackPanel>
+		<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top">
+			<Panel ux:Name="NavigationBar" Height="80" IsEnabled="{NavigationBarIsEnabled}">
+					<Rectangle CornerRadius="0" Alignment="Center">
+						<Stroke Width="2" Brush="#000"/>
+						<Text FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+					</Rectangle>
+					<WhileDisabled>
+					    <Change NavigationBarContainer.Y="-80"  Duration="0.5"
+                    Easing="CircularInOut"/>
 
+							<Change TabBar.Y="80"  Duration="0.5"
+                    Easing="CircularInOut"/>
+					</WhileDisabled>
+			</Panel>
+		</StackPanel>
+
+		<Panel ux:Name="TabBar" Alignment="Bottom" Width="100%" Background="#fff">
+			<Rectangle ux:Name="TabActiveIndicator" Height="3" Fill="#000" Width="100" Alignment="Bottom" X="0"/>
+			<!-- TabBar -->
+			<Grid ColumnData="100,100,100" Height="45" >
+				<Panel ux:Name="articleTab" Background="#fff">
+					<Text ux:Name="articleTabText" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+					<Clicked>
+						<Set pages.Active="articlePage" />
+					</Clicked>
+				</Panel>
+				<Panel ux:Name="videoTab" Background="#fff">
+					<Text ux:Name="videoTabText" Value="Video" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+					<Clicked>
+						<Set pages.Active="videoPage" />
+					</Clicked>
+				</Panel>
+				<Panel ux:Name="settingsTab" Background="#fff">
+					<Text ux:Name="settingsTabText" Value="Setting" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+					<Clicked>
+						<Set pages.Active="settingsPage" />
+					</Clicked>
+				</Panel>
+			</Grid>
+
+		</Panel>
+
+		<DockPanel>
 			<Panel DockPanel.Dock="Fill">
 				<PageControl ux:Name="pages" Active="videoPage">
 					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
@@ -31,14 +62,16 @@
 							</StackPanel>
 						</ScrollView>
 					</Page>
+
 					<Page ux:Name="videoPage" Background="#fff">
+
 						<!-- Animation -->
 						<ActivatingAnimation>
 							<Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 							<Change Easing="QuadraticInOut" Duration="0.3" videoTabText.TextColor="#000"/>
 						</ActivatingAnimation>
 
-						<ScrollView>
+						<ScrollView Padding="0, 80, 0, 0">
 							<StackPanel Alignment="Top">
 								<Panel Height="7" />
 								<Each Items="{videos}">
@@ -49,6 +82,7 @@
 								<Change Target="NavigationBar.Height" Value="50"/>
 							</ScrollingAnimation>
 						</ScrollView>
+
 					</Page>
 					<Page ux:Name="settingsPage" Background="#fff">
 						<!-- Animation -->
@@ -58,32 +92,6 @@
 						</ActivatingAnimation>
 					</Page>
 				</PageControl>
-			</Panel>
-
-			<Panel DockPanel.Dock="Bottom">
-				<Rectangle ux:Name="TabActiveIndicator" Height="3" Fill="#000" Width="100" Alignment="Bottom" X="0"/>
-				<!-- TabBar -->
-				<Grid ColumnData="100,100,100" Height="45" >
-					<Panel ux:Name="articleTab" Background="#fff">
-						<Text ux:Name="articleTabText" Font="Lato-Bold" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-						<Clicked>
-							<Set pages.Active="articlePage" />
-						</Clicked>
-					</Panel>
-					<Panel ux:Name="videoTab" Background="#fff">
-						<Text ux:Name="videoTabText" Font="Lato-Bold" Value="Video" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-						<Clicked>
-							<Set pages.Active="videoPage" />
-						</Clicked>
-					</Panel>
-					<Panel ux:Name="settingsTab" Background="#fff">
-						<Text ux:Name="settingsTabText" Font="Lato-Bold" Value="Setting" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-						<Clicked>
-							<Set pages.Active="settingsPage" />
-						</Clicked>
-					</Panel>
-				</Grid>
-
 			</Panel>
 		</DockPanel>
 	</Panel>
