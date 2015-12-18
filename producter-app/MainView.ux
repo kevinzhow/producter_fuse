@@ -5,6 +5,7 @@
 	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
 	<Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
 	<JavaScript File="assets/js/moment.min.js" ux:Global="Moment"/>
+
 	<Panel>
 		<!-- NavigationBar -->
 		<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top">
@@ -104,4 +105,6 @@
 		</Panel>
 
 	</Panel>
+	<!-- VideoDetail -->
+	<VideoDetailPage/>
 </App>

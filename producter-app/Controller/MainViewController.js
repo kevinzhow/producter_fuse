@@ -134,6 +134,7 @@ module.exports = {
 	toggleNavigationBar: toggleNavigationBar,
 	ArticlePresented: ArticlePresented,
 	TabBarIsEnabled: TabBarIsEnabled,
+  ss: "<h1>Hello world</h1>",
 	NavigationBarIsEnabled: NavigationBarIsEnabled,
 	toggleArticlePresented: toggleArticlePresented,
 	title : title,
