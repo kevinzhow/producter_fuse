@@ -2,6 +2,9 @@
 	<StackPanel Width="80%" >
 		<Image File="assets/images/demo.jpg" Width="100%" StretchMode="UniformToFill">
 			<DropShadow Angle="90" Distance="12" Size="25" Spread="0.1"  />
+			<WhilePressed>
+				<Scale Factor="0.98" Duration="0.1"/>
+			</WhilePressed>
 		</Image>
 		<Text Font="Lato-Bold" FontSize="13" Value="{resource.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
 		<Text Font="Lato-Light" FontSize="12" Value="{resource.created_at}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
