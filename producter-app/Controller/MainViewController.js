@@ -47,7 +47,7 @@ fetch(articleQuery, {
 	return response.json();
  })
 .then(function(responseObject) {
-	 var records = responseObject.records;
+	 var records = responseObject.records.reverse();
 	 for (var i = 0; i < records.length; i++) {
 		 var record = records[i];
 		 var record_fields = records[i].fields;
