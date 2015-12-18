@@ -51,58 +51,57 @@
 
 		</Panel>
 
-		<DockPanel>
-			<Panel DockPanel.Dock="Fill">
-				<PageControl ux:Name="pages" Active="settingsPage">
-					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
-					<Page ux:Name="articlePage" Background="#fff">
-						<!-- Animation -->
-						<ActivatingAnimation>
-							<Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
-							<Change Easing="QuadraticInOut" Duration="0.3" articleTabText.TextColor="#000"/>
-							<Change NavigationBar.IsEnabled="False"/>
-					  </ActivatingAnimation>
-						<ScrollView>
-							<StackPanel Alignment="Top">
-								<Each Items="{articles}">
-									<Article/>
-								</Each>
-							</StackPanel>
-						</ScrollView>
-					</Page>
 
-					<Page ux:Name="videoPage" Background="#fff">
+		<Panel Height="100%">
+			<PageControl ux:Name="pages" Active="settingsPage">
+				<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
+				<Page ux:Name="articlePage" Background="#fff">
+					<!-- Animation -->
+					<ActivatingAnimation>
+						<Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+						<Change Easing="QuadraticInOut" Duration="0.3" articleTabText.TextColor="#000"/>
+						<Change NavigationBar.IsEnabled="False"/>
+				  </ActivatingAnimation>
+					<ScrollView>
+						<StackPanel Alignment="Top">
+							<Each Items="{articles}">
+								<Article/>
+							</Each>
+						</StackPanel>
+					</ScrollView>
+				</Page>
 
-						<!-- Animation -->
-						<ActivatingAnimation>
-							<Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
-							<Change Easing="QuadraticInOut" Duration="0.3" videoTabText.TextColor="#000"/>
-						</ActivatingAnimation>
+				<Page ux:Name="videoPage" Background="#fff">
 
-						<ScrollView Padding="0, 80, 0, 0">
-							<StackPanel Alignment="Top">
-								<Panel Height="7" />
-								<Each Items="{videos}">
-									<VideoArticle />
-								</Each>
-							</StackPanel>
-							<ScrollingAnimation From="0" To="400">
-								<Change Target="NavigationBar.Height" Value="50"/>
-							</ScrollingAnimation>
-						</ScrollView>
+					<!-- Animation -->
+					<ActivatingAnimation>
+						<Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+						<Change Easing="QuadraticInOut" Duration="0.3" videoTabText.TextColor="#000"/>
+					</ActivatingAnimation>
 
-					</Page>
-					<Page ux:Name="settingsPage" Background="#fff">
-						<!-- Animation -->
-						<ActivatingAnimation>
-							<Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
-							<Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
-							<Change NavigationBar.IsEnabled="False"/>
-						</ActivatingAnimation>
-						<Settings/>
-					</Page>
-				</PageControl>
-			</Panel>
-		</DockPanel>
+					<ScrollView Padding="0, 80, 0, 0">
+						<StackPanel>
+							<Each Items="{videos}">
+								<VideoArticle />
+							</Each>
+						</StackPanel>
+						<ScrollingAnimation From="0" To="400">
+							<Change Target="NavigationBar.Height" Value="50"/>
+						</ScrollingAnimation>
+					</ScrollView>
+
+				</Page>
+				<Page ux:Name="settingsPage" Background="#fff">
+					<!-- Animation -->
+					<ActivatingAnimation>
+						<Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+						<Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
+						<Change NavigationBar.IsEnabled="False"/>
+					</ActivatingAnimation>
+					<Settings/>
+				</Page>
+			</PageControl>
+		</Panel>
+
 	</Panel>
 </App>
