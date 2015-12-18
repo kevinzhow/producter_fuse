@@ -12,16 +12,19 @@
 						<Text Font="Bold" FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
 					</Rectangle>
 					<WhileDisabled>
-					    <Change NavigationBarContainer.Y="-80"  Duration="0.5"
-                    Easing="CircularInOut"/>
-
-							<Change TabBar.Y="80"  Duration="0.5"
+					    <Change NavigationBarContainer.Y="-80"  Duration="0.3"
                     Easing="CircularInOut"/>
 					</WhileDisabled>
 			</Panel>
 		</StackPanel>
 
-		<Panel ux:Name="TabBar" Alignment="Bottom" Width="100%" Background="#fff">
+		<Panel ux:Name="TabBar" Alignment="Bottom" Width="100%" Background="#fff" IsEnabled="{TabBarIsEnabled}">
+
+			<WhileDisabled>
+					<Change TabBar.Y="80"  Duration="0.5"
+								Easing="CircularInOut"/>
+			</WhileDisabled>
+
 			<Rectangle ux:Name="TabActiveIndicator" Height="3" Fill="#000" Width="100" Alignment="Bottom" X="0"/>
 			<!-- TabBar -->
 			<Grid ColumnData="100,100,100" Height="45" >
@@ -49,18 +52,19 @@
 
 		<DockPanel>
 			<Panel DockPanel.Dock="Fill">
-				<PageControl ux:Name="pages" Active="videoPage">
+				<PageControl ux:Name="pages" Active="articlePage">
 					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 					<Page ux:Name="articlePage" Background="#fff">
 						<!-- Animation -->
 						<ActivatingAnimation>
 							<Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 							<Change Easing="QuadraticInOut" Duration="0.3" articleTabText.TextColor="#000"/>
+							<Change NavigationBar.IsEnabled="False"/>
 					  </ActivatingAnimation>
-						<ScrollView Margin="0">
+						<ScrollView>
 							<StackPanel Alignment="Top">
 								<Each Items="{articles}">
-
+									<Article/>
 								</Each>
 							</StackPanel>
 						</ScrollView>
@@ -92,6 +96,7 @@
 						<ActivatingAnimation>
 							<Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 							<Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
+							<Change NavigationBar.IsEnabled="False"/>
 						</ActivatingAnimation>
 					</Page>
 				</PageControl>

@@ -25,7 +25,13 @@ function Article(resource) {
 
 articles = Observable();
 for (i = 1; i < 21; i++) {
-	articles.add(new Article('Article' + i));
+	var article = {title:"iOS With Girlfriend " + i,
+	author: "Kevin",
+	short_desc: 'Learn how to adjust your layout by adding or removing a view to allow for the best use of space in your layout.',
+	created_at: (i+1) +' days ago'}
+
+	article.subtitle = article.author + " " + article.created_at
+	articles.add(new Article(article));
 }
 
 //Videos
@@ -50,6 +56,8 @@ title = Observable(function () {
 
 NavigationBarIsEnabled = Observable(true);
 
+TabBarIsEnabled = Observable(true);
+
 ArticlePresented = Observable('Default');
 
 function toggleNavigationBar(enable) {
@@ -62,15 +70,27 @@ function toggleNavigationBar(enable) {
 	}
 }
 
+function toggleTabBar(enable) {
+	if (enable != null) {
+		TabBarIsEnabled.value = enable
+	} else if (TabBarIsEnabled.value) {
+		TabBarIsEnabled.value = false
+	} else {
+		TabBarIsEnabled.value = true
+	}
+}
+
 function toggleArticlePresented() {
 	if (ArticlePresented.value == 'Presented') {
 		ArticlePresented.value = 'Default';
 		console.log("Article " + ArticlePresented.value);
 		toggleNavigationBar(true)
+		toggleTabBar(true)
 	} else {
 		ArticlePresented.value = 'Presented';
 		console.log("Article " +  ArticlePresented.value);
 		toggleNavigationBar(false)
+		toggleTabBar(false)
 	}
 }
 
@@ -79,6 +99,7 @@ module.exports = {
 	videos: videos,
 	toggleNavigationBar: toggleNavigationBar,
 	ArticlePresented: ArticlePresented,
+	TabBarIsEnabled: TabBarIsEnabled,
 	NavigationBarIsEnabled: NavigationBarIsEnabled,
 	toggleArticlePresented: toggleArticlePresented,
 	title : title,

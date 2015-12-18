@@ -15,6 +15,6 @@
 	</StackPanel>
 
 	<WhileTrue ux:Name="videoArticleLayout" >
-		<Change VideoArticle.Alignment="Top" Duration="0.3" DurationBack="0"/>
+
 	</WhileTrue>
 </Panel>
