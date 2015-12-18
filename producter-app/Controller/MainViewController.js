@@ -1,38 +1,57 @@
 var Observable = require('FuseJS/Observable');
+var ServerPath = "https://api.apple-cloudkit.com/database/1/";
+var CloudIdentifier = "iCloud.kevinzhow.Producter";
+var Enviroment = "development"
+var DataBase = "public/records"
+var DataMethod = "query"
+var ckAPIToken= "84df66d97de04cd3ab8fb24d45150d7456ee65d6322c98b67d09985d3c0d9a58"
 
 // Fetch data
 
-// var Observable = require("FuseJS/Observable");
-//
-// var data = Observable();
-//
-// fetch('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.digg.com/rss/index.xml')
-// .then(function(response) { return response.json(); })
-// .then(function(responseObject) { data.value = responseObject; });
-//
-// module.exports = {
-// 	dataSource: data
-// };
-//
+var articleRequest = {
+	query: {
+		recordType: "article"
+	}
+}
 
 // Articles
 
 function Article(resource) {
 	this.resource = resource;
-	this.isSelected = Observable(false);
-	this.indicateModeChange = Observable(false);
 }
 
 articles = Observable();
-for (i = 1; i < 21; i++) {
-	var article = {title:"iOS With Girlfriend " + i,
-	author: "Kevin",
-	short_desc: 'Learn how to adjust your layout by adding or removing a view to allow for the best use of space in your layout.',
-	created_at: (i+1) +' days ago'}
 
-	article.subtitle = article.author + " " + article.created_at
-	articles.add(new Article(article));
-}
+var articleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
+// console.log(articleQuery);
+fetch(articleQuery, {
+	method: 'POST',
+  headers: { "Content-type": "application/json"},
+  body: JSON.stringify(articleRequest)
+})
+.then(function(response) {
+	status = response.status;
+	console.log("Fetch article records " + status);
+	return response.json();
+ })
+.then(function(responseObject) {
+	 var records = responseObject.records;
+	 for (var i = 0; i < records.length; i++) {
+		 var record = records[i];
+		 var record_fields = records[i].fields;
+		 console.log(record_fields);
+		 var article = {title:record_fields.title.value,
+		 	author: record_fields.author.value,
+		 	short_desc: record_fields.content.value.slice(0,140)+"...",
+			content: record_fields.content.value,
+			type: record_fields.type.value,
+		 	created_at: record.created.timestamp}
+		 	article.subtitle = article.author + " " + article.created_at
+		 	articles.add(new Article(article));
+	 }
+}).catch(function(err) {
+    // An error occured parsing Json
+});
 
 //Videos
 
@@ -81,7 +100,6 @@ function toggleTabBar(enable) {
 }
 
 function toggleArticlePresented(args) {
-	console.log("Article " + args.data.resource.title )
 	if (ArticlePresented.value == 'Presented') {
 		ArticlePresented.value = 'Default';
 		console.log("Article " + ArticlePresented.value);
@@ -89,6 +107,9 @@ function toggleArticlePresented(args) {
 		toggleTabBar(true)
 	} else {
 		ArticlePresented.value = 'Presented';
+
+		console.log("Article " + args.data.resource.title )
+
 		console.log("Article " +  ArticlePresented.value);
 		toggleNavigationBar(false)
 		toggleTabBar(false)
