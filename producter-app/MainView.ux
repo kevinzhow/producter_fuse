@@ -1,13 +1,14 @@
 <App Background="#fff">
 	<JavaScript File="Controller/MainViewController.js" />
+	<Font File="assets/fonts/AlegreyaSans-Bold.otf" ux:Global="AlegreyaSans-Bold" />
+	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Lato-Bold" />
 	<Panel>
-
 		<DockPanel>
 			<StackPanel Dock="Top" Background="#fff">
 				<Panel Height="80">
 						<Rectangle CornerRadius="0" Alignment="Center">
 							<Stroke Width="2" Brush="#000"/>
-							<Text Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+							<Text Font="Lato-Bold" FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
 						</Rectangle>
 				</Panel>
 			</StackPanel>
@@ -18,16 +19,19 @@
 					<Page ux:Name="articlePage" Background="#fff">
 					  <ActivatingAnimation>
 							<Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+							<Change Easing="QuadraticInOut" Duration="0.3" articleTabText.TextColor="#000"/>
 					  </ActivatingAnimation>
 					</Page>
 					<Page ux:Name="videoPage" Background="#fff">
 						<ActivatingAnimation>
 							<Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+							<Change Easing="QuadraticInOut" Duration="0.3" videoTabText.TextColor="#000"/>
 						</ActivatingAnimation>
 					</Page>
 					<Page ux:Name="settingsPage" Background="#fff">
 						<ActivatingAnimation>
 							<Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+							<Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
 						</ActivatingAnimation>
 					</Page>
 				</PageControl>
@@ -38,19 +42,19 @@
 
 				<Grid ColumnData="100,100,100" Height="45" >
 					<Panel ux:Name="articleTab" Background="#fff">
-						<Text Value="Article" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
-						<Clicked Handler="{hello}">
+						<Text ux:Name="articleTabText" Font="Lato-Bold" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+						<Clicked>
 							<Set pages.Active="articlePage" />
 						</Clicked>
 					</Panel>
 					<Panel ux:Name="videoTab" Background="#fff">
-						<Text Value="Video" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+						<Text ux:Name="videoTabText" Font="Lato-Bold" Value="Video" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
 						<Clicked>
 							<Set pages.Active="videoPage" />
 						</Clicked>
 					</Panel>
 					<Panel ux:Name="settingsTab" Background="#fff">
-						<Text Value="Setting" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+						<Text ux:Name="settingsTabText" Font="Lato-Bold" Value="Setting" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
 						<Clicked>
 							<Set pages.Active="settingsPage" />
 						</Clicked>
