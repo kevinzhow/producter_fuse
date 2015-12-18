@@ -5,6 +5,7 @@
 	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
 	<Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
 	<Panel>
+		<!-- NavigationBar -->
 		<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top">
 			<Panel ux:Name="NavigationBar" Height="80" IsEnabled="{NavigationBarIsEnabled}">
 					<Rectangle CornerRadius="0" Alignment="Center">
@@ -18,16 +19,14 @@
 					</WhileDisabled>
 			</Panel>
 		</StackPanel>
-
+		<!-- TabBar -->
 		<Panel ux:Name="TabBar" Alignment="Bottom" Width="100%" Background="#fff" IsEnabled="{TabBarIsEnabled}">
-
 			<WhileDisabled>
 					<Change TabBar.Y="80"  Duration="0.5"
 								Easing="CircularInOut"/>
 			</WhileDisabled>
 
 			<Rectangle ux:Name="TabActiveIndicator" Height="3" Fill="#000" Width="100" Alignment="Bottom" X="0"/>
-			<!-- TabBar -->
 			<Grid ColumnData="100,100,100" Height="45" >
 				<Panel ux:Name="articleTab" Background="#fff">
 					<Text Font="Bold"  ux:Name="articleTabText" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
@@ -51,9 +50,9 @@
 
 		</Panel>
 
-
+		<!-- Page -->
 		<Panel Height="100%">
-			<PageControl ux:Name="pages" Active="settingsPage">
+			<PageControl ux:Name="pages" Active="videoPage">
 				<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 				<Page ux:Name="articlePage" Background="#fff">
 					<!-- Animation -->

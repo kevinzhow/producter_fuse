@@ -80,7 +80,8 @@ function toggleTabBar(enable) {
 	}
 }
 
-function toggleArticlePresented() {
+function toggleArticlePresented(args) {
+	console.log("Article " + args.data.resource.title )
 	if (ArticlePresented.value == 'Presented') {
 		ArticlePresented.value = 'Default';
 		console.log("Article " + ArticlePresented.value);
