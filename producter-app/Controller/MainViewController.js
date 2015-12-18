@@ -10,7 +10,18 @@ var ckAPIToken= "84df66d97de04cd3ab8fb24d45150d7456ee65d6322c98b67d09985d3c0d9a5
 
 var articleRequest = {
 	query: {
-		recordType: "article"
+		recordType: "article",
+		filterBy: [{
+				comparator:"EQUALS",
+				fieldName:"type",
+				fieldValue:{
+						value: "article"
+				},
+        sortBy: [{
+            fieldName:"article_id",
+            ascending: true
+        }]
+		}]
 	}
 }
 
@@ -39,10 +50,9 @@ fetch(articleQuery, {
 	 for (var i = 0; i < records.length; i++) {
 		 var record = records[i];
 		 var record_fields = records[i].fields;
-		 console.log(record_fields);
 		 var article = {title:record_fields.title.value,
 		 	author: record_fields.author.value,
-		 	short_desc: record_fields.content.value.slice(0,140)+"...",
+		 	short_desc: record_fields.description.value,
 			content: record_fields.content.value,
 			type: record_fields.type.value,
 		 	created_at: record.created.timestamp}
@@ -51,6 +61,7 @@ fetch(articleQuery, {
 	 }
 }).catch(function(err) {
     // An error occured parsing Json
+		console.log(err);
 });
 
 //Videos
