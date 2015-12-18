@@ -1,12 +1,15 @@
 <App Background="#fff">
   <iOS.StatusBarConfig IsVisible="false"/>
 	<JavaScript File="Controller/MainViewController.js" />
+	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
+	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
+	<Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
 	<Panel>
 		<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top">
 			<Panel ux:Name="NavigationBar" Height="80" IsEnabled="{NavigationBarIsEnabled}">
 					<Rectangle CornerRadius="0" Alignment="Center">
 						<Stroke Width="2" Brush="#000"/>
-						<Text FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+						<Text Font="Bold" FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
 					</Rectangle>
 					<WhileDisabled>
 					    <Change NavigationBarContainer.Y="-80"  Duration="0.5"
@@ -23,19 +26,19 @@
 			<!-- TabBar -->
 			<Grid ColumnData="100,100,100" Height="45" >
 				<Panel ux:Name="articleTab" Background="#fff">
-					<Text ux:Name="articleTabText" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+					<Text Font="Bold"  ux:Name="articleTabText" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
 					<Clicked>
 						<Set pages.Active="articlePage" />
 					</Clicked>
 				</Panel>
 				<Panel ux:Name="videoTab" Background="#fff">
-					<Text ux:Name="videoTabText" Value="Video" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+					<Text Font="Bold"  ux:Name="videoTabText" Value="Video" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
 					<Clicked>
 						<Set pages.Active="videoPage" />
 					</Clicked>
 				</Panel>
 				<Panel ux:Name="settingsTab" Background="#fff">
-					<Text ux:Name="settingsTabText" Value="Setting" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+					<Text Font="Bold"  ux:Name="settingsTabText" Value="Setting" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
 					<Clicked>
 						<Set pages.Active="settingsPage" />
 					</Clicked>

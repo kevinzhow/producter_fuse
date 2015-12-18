@@ -50,19 +50,36 @@ title = Observable(function () {
 
 NavigationBarIsEnabled = Observable(true);
 
-function disableNavigationBar() {
-	console.log("Disable NavigationBar");
-	if (NavigationBarIsEnabled.value) {
+ArticlePresented = Observable('Default');
+
+function toggleNavigationBar(enable) {
+	if (enable != null) {
+		NavigationBarIsEnabled.value = enable
+	} else if (NavigationBarIsEnabled.value) {
 		NavigationBarIsEnabled.value = false
 	} else {
 		NavigationBarIsEnabled.value = true
 	}
 }
 
+function toggleArticlePresented() {
+	if (ArticlePresented.value == 'Presented') {
+		ArticlePresented.value = 'Default';
+		console.log("Article " + ArticlePresented.value);
+		toggleNavigationBar(true)
+	} else {
+		ArticlePresented.value = 'Presented';
+		console.log("Article " +  ArticlePresented.value);
+		toggleNavigationBar(false)
+	}
+}
+
 module.exports = {
 	articles: articles,
 	videos: videos,
-	disableNavigationBar: disableNavigationBar,
+	toggleNavigationBar: toggleNavigationBar,
+	ArticlePresented: ArticlePresented,
 	NavigationBarIsEnabled: NavigationBarIsEnabled,
+	toggleArticlePresented: toggleArticlePresented,
 	title : title,
 };
