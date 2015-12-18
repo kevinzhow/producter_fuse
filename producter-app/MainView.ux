@@ -29,10 +29,6 @@
 
 								</Each>
 							</StackPanel>
-							<ScrollingAnimation From="0" To="400">
-								<Change  NavigationBar.Height="40"/>
-								<Change Target="NavigationBar.Height" Value="40"/>
-							</ScrollingAnimation>
 						</ScrollView>
 					</Page>
 					<Page ux:Name="videoPage" Background="#fff">
@@ -49,6 +45,9 @@
 									<VideoArticle />
 								</Each>
 							</StackPanel>
+							<ScrollingAnimation From="0" To="400">
+								<Change Target="NavigationBar.Height" Value="50"/>
+							</ScrollingAnimation>
 						</ScrollView>
 					</Page>
 					<Page ux:Name="settingsPage" Background="#fff">
