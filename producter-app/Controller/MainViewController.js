@@ -1,21 +1,46 @@
 var Observable = require('FuseJS/Observable');
 
+// Fetch data
 
-function Picture(resource) {
+// var Observable = require("FuseJS/Observable");
+//
+// var data = Observable();
+//
+// fetch('https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&q=http://www.digg.com/rss/index.xml')
+// .then(function(response) { return response.json(); })
+// .then(function(responseObject) { data.value = responseObject; });
+//
+// module.exports = {
+// 	dataSource: data
+// };
+//
+
+// Articles
+
+function Article(resource) {
 	this.resource = resource;
 	this.isSelected = Observable(false);
 	this.indicateModeChange = Observable(false);
 }
 
-
-
-function pageButtonClicked(arg){
-	console.log(arg)
+articles = Observable();
+for (i = 1; i < 21; i++) {
+	articles.add(new Article('Article' + i));
 }
 
-pictures = Observable();
-for (i = 1; i < 21; i++) {
-	pictures.add(new Picture('Unsplash' + i));
+//Videos
+
+function Video(resource) {
+	this.resource = resource;
+	this.isSelected = Observable(false);
+	this.indicateModeChange = Observable(false);
+}
+
+videos = Observable();
+for (i = 0; i < 21; i++) {
+	videos.add(new Video({title:"iOS With Girlfriend " + i,
+	poster: 'assets/images/demo.png',
+	created_at: (i+1) +' days ago'}));
 }
 
 selectionMode = Observable(false);
@@ -59,18 +84,13 @@ function nullModeChange(args) {
 	args.data.indicateModeChange.value = false;
 }
 
-function hello(sender,args) {
-	console.log(args)
-}
-
 module.exports = {
-	pictures: pictures,
+	articles: articles,
+	videos: videos,
 	selectionMode : selectionMode,
 	goToSelectionMode : goToSelectionMode,
 	toggleSelect : toggleSelect,
 	title : title,
-	hello: hello,
-	newX: 100,
 	deleteSelected : deleteSelected,
 	nullModeChange : nullModeChange
 };
