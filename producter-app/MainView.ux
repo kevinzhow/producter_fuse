@@ -13,21 +13,21 @@
 			</StackPanel>
 
 			<Panel DockPanel.Dock="Fill">
-				<PageControl ux:Name="pages">
+				<PageControl ux:Name="pages" Active="articlePage">
 					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 					<Page ux:Name="articlePage" Background="#fff">
-						<ActivatingAnimation>
-							<Change TabActiveIndicatorX.Value="0"/>
-						</ActivatingAnimation>
+					  <ActivatingAnimation>
+							<Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+					  </ActivatingAnimation>
 					</Page>
 					<Page ux:Name="videoPage" Background="#fff">
 						<ActivatingAnimation>
-							<Change TabActiveIndicatorX.Value="100"/>
+							<Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 						</ActivatingAnimation>
 					</Page>
 					<Page ux:Name="settingsPage" Background="#fff">
 						<ActivatingAnimation>
-							<Change TabActiveIndicatorX.Value="200"/>
+							<Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 						</ActivatingAnimation>
 					</Page>
 				</PageControl>
@@ -39,7 +39,7 @@
 				<Grid ColumnData="100,100,100" Height="45" >
 					<Panel ux:Name="articleTab" Background="#fff">
 						<Text Value="Article" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
-						<Clicked>
+						<Clicked Handler="{hello}">
 							<Set pages.Active="articlePage" />
 						</Clicked>
 					</Panel>

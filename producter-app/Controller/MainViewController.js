@@ -7,6 +7,12 @@ function Picture(resource) {
 	this.indicateModeChange = Observable(false);
 }
 
+
+
+function pageButtonClicked(arg){
+	console.log(arg)
+}
+
 pictures = Observable();
 for (i = 1; i < 21; i++) {
 	pictures.add(new Picture('Unsplash' + i));
@@ -53,12 +59,18 @@ function nullModeChange(args) {
 	args.data.indicateModeChange.value = false;
 }
 
+function hello(sender,args) {
+	console.log(args)
+}
+
 module.exports = {
 	pictures: pictures,
 	selectionMode : selectionMode,
 	goToSelectionMode : goToSelectionMode,
 	toggleSelect : toggleSelect,
 	title : title,
+	hello: hello,
+	newX: 100,
 	deleteSelected : deleteSelected,
 	nullModeChange : nullModeChange
 };
