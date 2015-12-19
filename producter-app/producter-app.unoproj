@@ -20,6 +20,7 @@
         "Fuse.Desktop",
         "Fuse.iOS",
         "FuseCore",
+        "Fuse.Launcher",
         "Uno.Collections",
         "Uno.Geometry"
   ],
