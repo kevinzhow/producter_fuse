@@ -1,17 +1,15 @@
 <Panel ux:Name="VideoDetailPage" Height="100%" Width="100%" Background="#fff" Alignment="Top">
-	<SpinIndicator ux:Name="Indicator" />
-  <NativeViewHost>
-    <WebView ux:Name="WebContainer" Height="260" Width="100%" Source="{presentedArticle.resource.mediaHTML}" Alignment="Top" Margin="0, 0, 0, 45">
-      <PageLoaded>
-        <Set Indicator.IsEnabled="False" />
-        <Change WebContainer.Opacity="1" Duration="0.4"/>
-      </PageLoaded>
-      <WhilePageLoading>
-        <Set Indicator.IsEnabled="True" />
-        <Change WebContainer.Opacity="0"/>
-      </WhilePageLoading>
-    </WebView>
-  </NativeViewHost>
+  <StackPanel Width="80%" Alignment="Top">
+    <Image ux:Name="VideoPoster" Url="{presentedArticle.resource.poster}" Width="100%" Height="200" >
+      <DropShadow Angle="90" Distance="12" Size="25" Spread="0.1" Color="#ddd" />
+      <WhilePressed>
+        <Scale Factor="0.98" Duration="0.1"/>
+      </WhilePressed>
+    </Image>
+    <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="{presentedArticle.resource.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+    <Text Font="Light" FontSize="12" Value="{presentedArticle.resource.created_at}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{presentedArticle.resource.short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 15, 0"/>
+  </StackPanel>
 
   <Rectangle Height="45" Alignment="BottomLeft" Width="80" Background="#fff">
     <Text TextWrapping="Wrap" Font="Bold" FontSize="15" Value="Back" Alignment="Center" TextColor="#000">

@@ -147,7 +147,7 @@ fetch(videoArticleQuery, {
 //Videos
 videos = Observable();
 
-presentedArticle =  Observable(new Article());
+var presentedArticle =  Observable(new Article());
 
 title = Observable(function () {
 		titleData = {name: 'iOS With Girl Friend'}
