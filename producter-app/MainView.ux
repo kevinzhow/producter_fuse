@@ -97,6 +97,8 @@
 							<Set articlePage.Visibility="Hidden"/>
 						</WhileDisabled>
 
+						<SpinIndicator IsEnabled="{ArticlePageSpinEnabled}"/>
+
 						<ScrollView>
 							<StackPanel Alignment="Top">
 								<Each Items="{articles}">
@@ -130,7 +132,7 @@
 						<WhileDisabled>
 							<Set videoPage.Visibility="Hidden"/>
 						</WhileDisabled>
-
+						<SpinIndicator IsEnabled="{VideoPageSpinEnabled}"/>
 						<ScrollView Padding="0, 80, 0, 0">
 							<StackPanel>
 								<Each Items="{videos}">

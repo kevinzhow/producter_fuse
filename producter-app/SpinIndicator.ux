@@ -1,0 +1,7 @@
+<Rectangle ux:Name="Indicator" Width="20" Height="20" Opacity="0">
+    <Stroke Width="2" Brush="#000"/>
+    <WhileEnabled>
+        <Spin Frequency="0.8" />
+        <Change Indicator.Opacity="1" Duration="0.2"/>
+    </WhileEnabled>
+</Rectangle>

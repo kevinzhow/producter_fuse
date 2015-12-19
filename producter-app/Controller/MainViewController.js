@@ -38,9 +38,11 @@ function Article(resource) {
 }
 
 articles = Observable();
+ArticlePageSpinEnabled = Observable(false);
 
 var articleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
 // console.log(articleQuery);
+ArticlePageSpinEnabled.value = true;
 fetch(articleQuery, {
 	method: 'POST',
   headers: { "Content-type": "application/json"},
@@ -52,6 +54,8 @@ fetch(articleQuery, {
 	return response.json();
  })
 .then(function(responseObject) {
+	articles.clear()
+	ArticlePageSpinEnabled.value = false;
 	 var records = responseObject.records.reverse();
 	 for (var i = 0; i < records.length; i++) {
 		 var record = records[i];
@@ -100,6 +104,9 @@ var videoArticleRequest = {
 
 var videoArticleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
 // console.log(articleQuery);
+VideoPageSpinEnabled = Observable(false);
+VideoPageSpinEnabled.value = true
+
 fetch(videoArticleQuery, {
 	method: 'POST',
   headers: { "Content-type": "application/json"},
@@ -111,8 +118,10 @@ fetch(videoArticleQuery, {
 	return response.json();
  })
 .then(function(responseObject) {
-	 var records = responseObject.records;
-	 for (var i = 0; i < records.length; i++) {
+	  VideoPageSpinEnabled.value = false
+		videos.clear()
+		var records = responseObject.records;
+		for (var i = 0; i < records.length; i++) {
 		 var record = records[i];
 		 var record_fields = records[i].fields;
 		 var video = {
@@ -179,6 +188,7 @@ function toggleArticlePresented(args) {
 		if 	(presentedArticle.value.resource.type == "video") {
 			console.log("Add NavigationBar Back");
 			toggleNavigationBar(true)
+		} else {
 		}
 		toggleTabBar(true)
 	} else {
@@ -199,6 +209,8 @@ module.exports = {
 	ArticlePresented: ArticlePresented,
 	TabBarIsEnabled: TabBarIsEnabled,
 	presentedArticle: presentedArticle,
+  ArticlePageSpinEnabled: ArticlePageSpinEnabled,
+	VideoPageSpinEnabled: VideoPageSpinEnabled,
 	NavigationBarIsEnabled: NavigationBarIsEnabled,
 	toggleArticlePresented: toggleArticlePresented,
 	title : title,

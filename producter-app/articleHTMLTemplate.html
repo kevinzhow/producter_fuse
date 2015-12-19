@@ -86,6 +86,11 @@
     </div>
     <link href="http://cdn.bootcss.com/highlight.js/8.9.1/styles/github-gist.min.css" rel="stylesheet">
     <script src="http://cdn.bootcss.com/highlight.js/8.9.1/highlight.min.js"></script>
-    <script >hljs.initHighlightingOnLoad();</script>
+    <script >
+      hljs.configure({
+        classPrefix: ''     // don't append class prefix
+      })
+      hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>
