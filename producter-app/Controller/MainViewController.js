@@ -60,11 +60,12 @@ fetch(articleQuery, {
 				created_at: Moment(record.created.timestamp).fromNow()
 			}
 		 	article.subtitle = article.author + " " + article.created_at
+			console.log("Add Article");
 		 	articles.add(new Article(article));
 	 }
 }).catch(function(err) {
     // An error occured parsing Json
-		console.log(err);
+		console.log("Fetch Error" + err);
 });
 
 //Videos
@@ -103,6 +104,7 @@ function toggleNavigationBar(enable) {
 
 function toggleTabBar(enable) {
 	if (enable != null) {
+		console.log("Navigation Bar " + enable);
 		TabBarIsEnabled.value = enable
 	} else if (TabBarIsEnabled.value) {
 		TabBarIsEnabled.value = false

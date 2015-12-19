@@ -3,4 +3,10 @@
 <WebView Height="100%" Width="100%" Source="{ss}">
 </WebView>
 </NativeViewHost>
+
+
+<Clicked Handler="{toggleArticlePresented}">
+  <GoBack/>
+</Clicked>
+
 </Panel>
