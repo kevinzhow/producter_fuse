@@ -1,6 +1,6 @@
 <Panel ux:Name="VideoDetailPage" Height="100%" Width="100%" Background="#fff" Alignment="Top">
   <NativeViewHost>
-    <WebView Height="100%" Width="100%" Url="http://v.qq.com/page/a/k/1/a0176w5ojk1.html" Alignment="Top" Margin="0, 0, 0, 45">
+    <WebView Height="100%" Width="100%" Url="{presentedVideo.resource.mediaURL}" Alignment="Top" Margin="0, 0, 0, 45">
     </WebView>
   </NativeViewHost>
 

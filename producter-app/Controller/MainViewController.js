@@ -110,7 +110,8 @@ fetch(videoArticleQuery, {
 				short_desc: record_fields.description.value,
 				content: record_fields.content.value,
 				type: record_fields.type.value,
-				poster: record_fields.poster.value.downloadURL,
+				poster: record_fields.posterURL.value,
+				mediaURL: record_fields.mediaURL.value,
 				created_at: Moment(record.created.timestamp).fromNow()
 			}
 			console.log("Add Video Article");
@@ -128,6 +129,8 @@ function Video(resource) {
 }
 
 videos = Observable();
+
+presentedVideo =  Observable(new Video());
 
 title = Observable(function () {
 		titleData = {name: 'iOS With Girl Friend'}
@@ -169,9 +172,9 @@ function toggleArticlePresented(args) {
 		toggleTabBar(true)
 	} else {
 		ArticlePresented.value = 'Presented';
-
+		presentedVideo.value = args.data;
 		console.log("Article " + args.data.resource.title )
-
+		console.log(args.data.resource.mediaURL);
 		console.log("Article " +  ArticlePresented.value);
 		toggleNavigationBar(false)
 		toggleTabBar(false)
@@ -184,7 +187,7 @@ module.exports = {
 	toggleNavigationBar: toggleNavigationBar,
 	ArticlePresented: ArticlePresented,
 	TabBarIsEnabled: TabBarIsEnabled,
-  ss: "<h1>Hello world</h1>",
+	presentedVideo: presentedVideo,
 	NavigationBarIsEnabled: NavigationBarIsEnabled,
 	toggleArticlePresented: toggleArticlePresented,
 	title : title,
