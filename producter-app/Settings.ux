@@ -6,7 +6,7 @@
 			Producter is a book about Design, iOS and Marketing, it talks about how to make product from 0 to 1.
 		</Text>
 		<Image ux:Name="VideoPoster" File="assets/images/cover.jpg" Width="50%" StretchMode="UniformToFill" Margin="0,40,0,40">
-			<DropShadow Angle="90" Distance="12" Size="20" Spread="0.1" Color="#ccc"/>
+			<DropShadow Angle="90" Distance="12" Size="20" Spread="0.1" Color="#ddd"/>
 			<WhilePressed>
 				<Scale Factor="0.98" Duration="0.1"/>
 			</WhilePressed>

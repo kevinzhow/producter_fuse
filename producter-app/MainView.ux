@@ -137,7 +137,7 @@
 										<StackPanel Width="80%" >
 										  <Rectangle>
 											<Image ux:Name="VideoPoster" Url="{resource.poster}" Width="100%" Height="200" >
-												<DropShadow Angle="90" Distance="12" Size="25" Spread="0.1"  />
+												<DropShadow Angle="90" Distance="12" Size="25" Spread="0.1" Color="#ddd" />
 												<WhilePressed>
 													<Scale Factor="0.98" Duration="0.1"/>
 												</WhilePressed>
