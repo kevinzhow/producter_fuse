@@ -1,0 +1,14 @@
+<Panel ux:Name="ArticleDetailPage" Height="100%" Width="100%" Background="#fff" Alignment="Top">
+  <NativeViewHost>
+    <WebView Height="100%" Width="100%" Url="{presentedVideo.resource.mediaURL}" Alignment="Top" Margin="0, 0, 0, 45">
+    </WebView>
+  </NativeViewHost>
+
+  <Rectangle Height="45" Alignment="BottomLeft" Width="80">
+    <Text TextWrapping="Wrap" Font="Bold" FontSize="15" Value="Back" Alignment="Center" TextColor="#000">
+    </Text>
+    <Clicked Handler="{toggleArticlePresented}">
+      <GoBack/>
+    </Clicked>
+  </Rectangle>
+</Panel>

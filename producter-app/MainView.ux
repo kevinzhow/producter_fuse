@@ -22,7 +22,7 @@
 		<!-- Page -->
 		<Page ux:Name="mainPage">
 			<!-- NavigationBar -->
-			<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top">
+			<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top" Y="-80" Visibility="Hidden">
 				<Panel ux:Name="NavigationBar" Height="80" IsEnabled="{NavigationBarIsEnabled}">
 						<Rectangle CornerRadius="0" Alignment="Center">
 							<Stroke Width="2" Brush="#000"/>
@@ -32,7 +32,14 @@
 						    <Change NavigationBarContainer.Y="-80"  Duration="0.3"
 	                    Easing="CircularInOut"/>
 								<Change NavigationBarContainer.Opacity="0"  Duration="0.3"/>
+								<Set NavigationBarContainer.Visibility="Hidden" />
 						</WhileDisabled>
+						<WhileEnabled>
+						    <Change NavigationBarContainer.Y="0"  Duration="0.3"
+	                    Easing="CircularInOut"/>
+								<Change NavigationBarContainer.Opacity="1"  Duration="0.3"/>
+								<Set NavigationBarContainer.Visibility="Visible" />
+						</WhileEnabled>
 				</Panel>
 			</StackPanel>
 			<!-- TabBar -->
@@ -75,12 +82,12 @@
 					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 
 					<!-- Article Page -->
-					<Panel ux:Name="articlePage" Background="#fff" Visibility="Hidden" IsEnabled="False">
+					<Panel ux:Name="articlePage" Background="#fff" Visibility="Visible" IsEnabled="True">
 						<!-- Animation -->
 						<WhileEnabled>
 							<Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 							<Change Easing="QuadraticInOut" Duration="0.3" articleTabText.TextColor="#000"/>
-							<Change NavigationBar.IsEnabled="False"/>
+							<Set NavigationBar.IsEnabled="False"/>
 							<Set articlePage.Visibility="Visible"/>
 					  </WhileEnabled>
 
@@ -98,13 +105,14 @@
 					</Panel>
 
 					<!-- Video Page -->
-					<Panel ux:Name="videoPage" Background="#fff" Visibility="Visible" IsEnabled="True">
+					<Panel ux:Name="videoPage" Background="#fff" Visibility="Hidden" IsEnabled="False">
 
 						<!-- Animation -->
 						<WhileEnabled>
 							<Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 							<Change Easing="QuadraticInOut" Duration="0.3" videoTabText.TextColor="#000"/>
 							<Set videoPage.Visibility="Visible"/>
+							<Set NavigationBar.IsEnabled="True"/>
 						</WhileEnabled>
 
 						<WhileDisabled>
@@ -117,12 +125,14 @@
 									<!-- Video Cell -->
 									<Panel ux:Name="VideoArticle" Margin="0,10,0,25" Background="#fff">
 										<StackPanel Width="80%" >
+										  <Rectangle>
 											<Image ux:Name="VideoPoster" Url="{resource.poster}" Width="100%" Height="200" >
 												<DropShadow Angle="90" Distance="12" Size="25" Spread="0.1"  />
 												<WhilePressed>
 													<Scale Factor="0.98" Duration="0.1"/>
 												</WhilePressed>
 											</Image>
+											</Rectangle>
 											<Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="{resource.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
 											<Text Font="Light" FontSize="12" Value="{resource.created_at}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
 											<Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{resource.short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 15, 0"/>
@@ -147,7 +157,7 @@
 						<WhileEnabled>
 							<Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
 							<Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
-							<Change NavigationBar.IsEnabled="False"/>
+							<Set NavigationBar.IsEnabled="False"/>
 							<Set settingsPage.Visibility="Visible"/>
 						</WhileEnabled>
 						<WhileDisabled>
@@ -164,5 +174,12 @@
 			<VideoDetailPage />
 		</Page>
 		<!-- End Video Detail Page -->
+
+		<!-- Article Detail Page -->
+		<Page ux:Name="ArticleDetailPage">
+			<!-- VideoDetail -->
+			<ArticleDetailPage />
+		</Page>
+		<!-- End Article Detail Page -->
 	</Panel>
 </App>

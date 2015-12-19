@@ -137,7 +137,7 @@ title = Observable(function () {
 		return titleData;
 });
 
-NavigationBarIsEnabled = Observable(true);
+NavigationBarIsEnabled = Observable(false);
 
 TabBarIsEnabled = Observable(true);
 
