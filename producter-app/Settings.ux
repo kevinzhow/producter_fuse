@@ -1,7 +1,10 @@
 <Panel ux:Name="Settings" Margin="0,0,0,25" Background="#fff">
 <ScrollView Padding="0,0,0,60">
 	<StackPanel Width="85%" >
-
+		<Text Font="Bold" FontSize="23" Value="Book" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
+			Producter is a book about Design, iOS and Marketing, it talks about how to make product from 0 to 1.
+		</Text>
 		<Image ux:Name="VideoPoster" File="assets/images/cover.jpg" Width="50%" StretchMode="UniformToFill" Margin="0,40,0,40">
 			<DropShadow Angle="90" Distance="12" Size="20" Spread="0.1" Color="#ccc"/>
 			<WhilePressed>
@@ -47,24 +50,27 @@
 
 		<Text Font="Bold" FontSize="23" Value="About" Alignment="Left" TextColor="#000"  Margin="0, 40, 15, 0"/>
 		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 10, 15, 0">
+			This app was made for Producter with Fuse. You can keep up with me in ways blow.
+		</Text>
+		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
 			Weibo http://weibo.com/kevinzhow
 			<Clicked>
         <LaunchUri Uri="http://weibo.com/kevinzhow"/>
       </Clicked>
 		</Text>
-		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 10, 15, 0">
+		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
 			Github kevinzhow
 			<Clicked>
         <LaunchUri Uri="https://github.com/kevinzhow"/>
       </Clicked>
 		</Text>
-		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 10, 15, 0">
+		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
 			Blog http://blog.zhowkev.in
 			<Clicked>
         <LaunchUri Uri="http://blog.zhowkev.in"/>
       </Clicked>
 		</Text>
-		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 10, 15, 0">
+		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
 			Version 1.0
 		</Text>
 	</StackPanel>
