@@ -133,6 +133,10 @@ fetch(videoArticleQuery, {
 				poster: record_fields.posterURL.value,
 				mediaURL: record_fields.mediaURL.value,
 				mediaHTML: videoHTMLTemplateString.replace(/#{VideoSrc}/, record_fields.mediaURL.value),
+				youtubeURL: record_fields.youtube_url.value,
+				youkuURL: record_fields.youku_url.value,
+				bilibiliURL: record_fields.bilibili_url.value,
+				githubURL: record_fields.github_url.value,
 				created_at: Moment(record.created.timestamp).fromNow()
 			}
 			console.log(video.mediaHTML);

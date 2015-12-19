@@ -9,6 +9,53 @@
     <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="{presentedArticle.resource.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
     <Text Font="Light" FontSize="12" Value="{presentedArticle.resource.created_at}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
     <Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{presentedArticle.resource.short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="Videos" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+    <Grid  ColumnCount="3">
+    <Rectangle Alignment="Left" Margin="0,20,0,0">
+      <Stroke Width="2" Brush="#000"/>
+      <Text Font="Bold" FontSize="13" Value="YouTube" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+      <Clicked>
+        <LaunchUri Uri="{presentedArticle.resource.youtubeURL}"/>
+      </Clicked>
+      <WhilePressed>
+        <Scale Factor="0.95" Duration="0.1"/>
+      </WhilePressed>
+    </Rectangle>
+
+    <Rectangle Alignment="Center" Margin="0,20,0,0">
+      <Stroke Width="2" Brush="#000"/>
+      <Text Font="Bold" FontSize="13" Value="Youku" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+      <Clicked>
+        <LaunchUri Uri="{presentedArticle.resource.youkuURL}"/>
+      </Clicked>
+      <WhilePressed>
+        <Scale Factor="0.95" Duration="0.1"/>
+      </WhilePressed>
+    </Rectangle>
+
+    <Rectangle Alignment="Right" Margin="0,20,0,0">
+      <Stroke Width="2" Brush="#000"/>
+      <Text Font="Bold" FontSize="13" Value="Bilibili" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+      <Clicked>
+        <LaunchUri Uri="{presentedArticle.resource.bilibiliURL}"/>
+      </Clicked>
+      <WhilePressed>
+        <Scale Factor="0.95" Duration="0.1"/>
+      </WhilePressed>
+    </Rectangle>
+    </Grid>
+
+    <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="Source Code" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+    <Rectangle Alignment="Left" Margin="0,20,0,0">
+      <Stroke Width="2" Brush="#000"/>
+      <Text Font="Bold" FontSize="13" Value="Github" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+      <Clicked>
+        <LaunchUri Uri="{presentedArticle.resource.githubURL}"/>
+      </Clicked>
+      <WhilePressed>
+        <Scale Factor="0.95" Duration="0.1"/>
+      </WhilePressed>
+    </Rectangle>
   </StackPanel>
 
   <Rectangle Height="45" Alignment="BottomLeft" Width="80" Background="#fff">
