@@ -1,15 +1,6 @@
 <Panel ux:Name="ArticleDetailPage" Height="100%" Width="100%" Background="#fff" Alignment="Top">
-  <SpinIndicator ux:Name="Indicator" />
   <NativeViewHost>
     <WebView ux:Name="WebContainer" Height="100%" Width="100%" Source="{presentedArticle.resource.contentHTML}" Alignment="Top" Margin="0, 0, 0, 45" >
-      <PageLoaded>
-        <Set Indicator.IsEnabled="False" />
-        <Change WebContainer.Opacity="1" Duration="0.4"/>
-      </PageLoaded>
-      <WhilePageLoading>
-        <Set Indicator.IsEnabled="True" />
-        <Change WebContainer.Opacity="0"/>
-      </WhilePageLoading>
     </WebView>
   </NativeViewHost>
 

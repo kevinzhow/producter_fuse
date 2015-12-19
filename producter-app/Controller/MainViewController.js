@@ -189,13 +189,11 @@ function toggleArticlePresented(args) {
 			console.log("Add NavigationBar Back");
 			toggleNavigationBar(true)
 		}
+		presentedArticle.value.resource.type.contentHTML = "";
 		toggleTabBar(true)
 	} else {
 		ArticlePresented.value = 'Presented';
 		presentedArticle.value = args.data;
-		console.log("Article " + args.data.resource.title )
-		console.log(args.data.resource.mediaURL);
-		console.log("Article " +  ArticlePresented.value);
 		toggleNavigationBar(false)
 		toggleTabBar(false)
 	}
