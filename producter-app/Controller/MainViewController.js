@@ -188,7 +188,6 @@ function toggleArticlePresented(args) {
 		if 	(presentedArticle.value.resource.type == "video") {
 			console.log("Add NavigationBar Back");
 			toggleNavigationBar(true)
-		} else {
 		}
 		toggleTabBar(true)
 	} else {
