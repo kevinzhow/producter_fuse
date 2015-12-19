@@ -32,7 +32,7 @@
 						    <Change NavigationBarContainer.Y="-80"  Duration="0.3"
 	                    Easing="CircularInOut"/>
 								<Change NavigationBarContainer.Opacity="0"  Duration="0.3"/>
-								<Set NavigationBarContainer.Visibility="Hidden" />
+								<Set NavigationBarContainer.Visibility="Hidden" Delay="0.3"/>
 						</WhileDisabled>
 						<WhileEnabled>
 						    <Change NavigationBarContainer.Y="0"  Duration="0.3"
@@ -98,7 +98,17 @@
 						<ScrollView>
 							<StackPanel Alignment="Top">
 								<Each Items="{articles}">
-									<Article/>
+									<Panel ux:Name="Article" Margin="0,10,0,25" Background="#fff">
+										<StackPanel Width="85%" >
+											<Text TextWrapping="Wrap" Font="Bold" FontSize="23" Value="{resource.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+											<Text Font="Light" Width="100%" FontSize="12" Value="{resource.subtitle}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
+											<Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{resource.short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 0, 0"/>
+
+											<Clicked Handler="{toggleArticlePresented}">
+												<NavigateTo Target="articleDetailPage"/>
+											</Clicked>
+										</StackPanel>
+									</Panel>
 								</Each>
 							</StackPanel>
 						</ScrollView>
@@ -176,7 +186,7 @@
 		<!-- End Video Detail Page -->
 
 		<!-- Article Detail Page -->
-		<Page ux:Name="ArticleDetailPage">
+		<Page ux:Name="articleDetailPage">
 			<!-- VideoDetail -->
 			<ArticleDetailPage />
 		</Page>

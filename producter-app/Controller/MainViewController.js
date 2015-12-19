@@ -115,7 +115,7 @@ fetch(videoArticleQuery, {
 				created_at: Moment(record.created.timestamp).fromNow()
 			}
 			console.log("Add Video Article");
-		 	videos.add(new Video(video));
+		 	videos.add(new Article(video));
 	 }
 }).catch(function(err) {
     // An error occured parsing Json
@@ -123,14 +123,9 @@ fetch(videoArticleQuery, {
 });
 
 //Videos
-
-function Video(resource) {
-	this.resource = resource;
-}
-
 videos = Observable();
 
-presentedVideo =  Observable(new Video());
+presentedArticle =  Observable(new Article());
 
 title = Observable(function () {
 		titleData = {name: 'iOS With Girl Friend'}
@@ -168,11 +163,14 @@ function toggleArticlePresented(args) {
 	if (ArticlePresented.value == 'Presented') {
 		ArticlePresented.value = 'Default';
 		console.log("Article " + ArticlePresented.value);
-		toggleNavigationBar(true)
+		if 	(presentedArticle.value.resource.type == "video") {
+			console.log("Add NavigationBar Back");
+			toggleNavigationBar(true)
+		}
 		toggleTabBar(true)
 	} else {
 		ArticlePresented.value = 'Presented';
-		presentedVideo.value = args.data;
+		presentedArticle.value = args.data;
 		console.log("Article " + args.data.resource.title )
 		console.log(args.data.resource.mediaURL);
 		console.log("Article " +  ArticlePresented.value);
@@ -187,7 +185,7 @@ module.exports = {
 	toggleNavigationBar: toggleNavigationBar,
 	ArticlePresented: ArticlePresented,
 	TabBarIsEnabled: TabBarIsEnabled,
-	presentedVideo: presentedVideo,
+	presentedArticle: presentedArticle,
 	NavigationBarIsEnabled: NavigationBarIsEnabled,
 	toggleArticlePresented: toggleArticlePresented,
 	title : title,
