@@ -98,7 +98,7 @@
 					</Panel>
 
 					<!-- Video Page -->
-					<Panel ux:Name="videoPage" Background="#fff" Visibility="Hidden" IsEnabled="True">
+					<Panel ux:Name="videoPage" Background="#fff" Visibility="Visible" IsEnabled="True">
 
 						<!-- Animation -->
 						<WhileEnabled>
