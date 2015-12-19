@@ -22,9 +22,13 @@
         "FuseCore",
         "Fuse.Launcher",
         "Uno.Collections",
-        "Uno.Geometry"
+        "Uno.Geometry",
+        "Fuse.Scripting",
+        "Experimental.iOS",
+        "Android"
   ],
   "Includes": [
-    "*"
+    "*",
+    "videoHTMLTemplate.html"
   ]
 }

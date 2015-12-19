@@ -5,6 +5,7 @@
 	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
 	<Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
 	<JavaScript File="assets/js/moment.min.js" ux:Global="Moment"/>
+	<TextFile File="videoHTMLTemplate.html" ux:Global="videoHTMLTemplate" />
 
 	<Panel>
 

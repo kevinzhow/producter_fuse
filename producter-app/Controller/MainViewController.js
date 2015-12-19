@@ -1,4 +1,6 @@
 var Observable = require('FuseJS/Observable');
+var videoHTMLTemplate = require("videoHTMLTemplate");
+var storage = require('FuseJS/Storage');
 var Moment = require('Moment');
 var ServerPath = "https://api.apple-cloudkit.com/database/1/";
 var CloudIdentifier = "iCloud.kevinzhow.Producter";
@@ -7,6 +9,8 @@ var DataBase = "public/records"
 var DataMethod = "query"
 var ckAPIToken= "84df66d97de04cd3ab8fb24d45150d7456ee65d6322c98b67d09985d3c0d9a58"
 
+var videoHTMLTemplateString = videoHTMLTemplate.readSync();
+console.log(videoHTMLTemplateString);
 // Fetch Article data
 
 var articleRequest = {
