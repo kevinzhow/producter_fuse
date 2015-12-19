@@ -22,12 +22,12 @@
 
 		<Grid Columns="auto,auto">
 			<Rectangle Alignment="Left" Margin="0,20,0,0">
-				<Stroke Width="2" Brush="#000"/>
-				<Text Font="Bold" FontSize="13" Value="Subscription" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+				<Stroke Width="2" Brush="#eee"/>
+				<Text Font="Bold" FontSize="13" Value="Subscription" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
 			</Rectangle>
 			<Rectangle Alignment="Left" Margin="20,20,0,0">
-				<Stroke Width="2" Brush="#000"/>
-				<Text Font="Bold" FontSize="13" Value="Restore" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+				<Stroke Width="2" Brush="#eee"/>
+				<Text Font="Bold" FontSize="13" Value="Restore" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
 			</Rectangle>
 		</Grid>
 

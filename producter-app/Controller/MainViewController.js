@@ -7,7 +7,7 @@ var DataBase = "public/records"
 var DataMethod = "query"
 var ckAPIToken= "84df66d97de04cd3ab8fb24d45150d7456ee65d6322c98b67d09985d3c0d9a58"
 
-// Fetch data
+// Fetch Article data
 
 var articleRequest = {
 	query: {
@@ -68,6 +68,59 @@ fetch(articleQuery, {
 		console.log("Fetch Error" + err);
 });
 
+// Fetch Video Article data
+
+var videoArticleRequest = {
+	query: {
+		recordType: "article",
+		filterBy: [{
+				comparator: "EQUALS",
+				fieldName: "type",
+				fieldValue:{
+						value: "video"
+				},
+        sortBy: [{
+            fieldName: "article_id",
+            ascending: false
+        }]
+		}]
+	}
+}
+
+var videoArticleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
+// console.log(articleQuery);
+fetch(videoArticleQuery, {
+	method: 'POST',
+  headers: { "Content-type": "application/json"},
+  body: JSON.stringify(videoArticleRequest)
+})
+.then(function(response) {
+	status = response.status;
+	console.log("Fetch video article records " + status);
+	return response.json();
+ })
+.then(function(responseObject) {
+	 var records = responseObject.records.reverse();
+	 for (var i = 0; i < records.length; i++) {
+		 var record = records[i];
+		 var record_fields = records[i].fields;
+		 var video = {
+				title:record_fields.title.value,
+				author: record_fields.author.value,
+				short_desc: record_fields.description.value,
+				content: record_fields.content.value,
+				type: record_fields.type.value,
+				poster: record_fields.poster.value.downloadURL,
+				created_at: Moment(record.created.timestamp).fromNow()
+			}
+			console.log("Add Video Article");
+		 	videos.add(new Video(video));
+	 }
+}).catch(function(err) {
+    // An error occured parsing Json
+		console.log("Fetch Video Error" + err);
+});
+
 //Videos
 
 function Video(resource) {
@@ -75,11 +128,6 @@ function Video(resource) {
 }
 
 videos = Observable();
-for (i = 0; i < 10; i++) {
-	videos.add(new Video({title:"iOS With Girlfriend " + i,
-	poster: 'assets/images/demo.jpg',
-	created_at: (i+1) +' days ago'}));
-}
 
 title = Observable(function () {
 		titleData = {name: 'iOS With Girl Friend'}
