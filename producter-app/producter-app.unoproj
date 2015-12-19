@@ -29,6 +29,6 @@
   ],
   "Includes": [
     "*",
-    "videoHTMLTemplate.html"
+    "*.html"
   ]
 }

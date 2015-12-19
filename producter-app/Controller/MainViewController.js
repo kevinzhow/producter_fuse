@@ -1,5 +1,6 @@
 var Observable = require('FuseJS/Observable');
 var videoHTMLTemplate = require("videoHTMLTemplate");
+var articleHTMLTemplate = require("articleHTMLTemplate");
 var storage = require('FuseJS/Storage');
 var Moment = require('Moment');
 var ServerPath = "https://api.apple-cloudkit.com/database/1/";
@@ -10,7 +11,7 @@ var DataMethod = "query"
 var ckAPIToken= "84df66d97de04cd3ab8fb24d45150d7456ee65d6322c98b67d09985d3c0d9a58"
 
 var videoHTMLTemplateString = videoHTMLTemplate.readSync();
-console.log(videoHTMLTemplateString);
+var articleHTMLTemplateString = articleHTMLTemplate.readSync();
 // Fetch Article data
 
 var articleRequest = {
@@ -63,7 +64,13 @@ fetch(articleQuery, {
 				type: record_fields.type.value,
 				created_at: Moment(record.created.timestamp).fromNow()
 			}
-		 	article.subtitle = article.author + " " + article.created_at
+			article.subtitle = article.author + " " + article.created_at
+
+			var htmlContent = articleHTMLTemplateString.replace(/#{content}/, article.content)
+			htmlContent = htmlContent.replace(/#{title}/, article.title)
+			htmlContent = htmlContent.replace(/#{author}/, article.subtitle)
+
+			article.contentHTML = htmlContent
 			console.log("Add Article");
 		 	articles.add(new Article(article));
 	 }
@@ -116,8 +123,10 @@ fetch(videoArticleQuery, {
 				type: record_fields.type.value,
 				poster: record_fields.posterURL.value,
 				mediaURL: record_fields.mediaURL.value,
+				mediaHTML: videoHTMLTemplateString.replace(/#{VideoSrc}/, record_fields.mediaURL.value),
 				created_at: Moment(record.created.timestamp).fromNow()
 			}
+			console.log(video.mediaHTML);
 			console.log("Add Video Article");
 		 	videos.add(new Article(video));
 	 }

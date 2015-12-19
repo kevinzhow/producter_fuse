@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1.0 minimum-scale=1.0 maximum-scale=1.0 target-densitydpi=device-dpi">
     <meta charset="utf-8">
     <title></title>
-    <style media="screen">
+    <style>
     body{
       margin:0 !important;
       padding:0 !important;
@@ -16,7 +17,6 @@
     <style id="iframestyle">
         iframe#videoFrame {
           border: none !important;
-          display: none;
         }
         .site_head_simple, .mod_player_head, .mod_float_box ,.info_container, .mod_action, .info_container, .site_footer, .mod_video_album_section, .btn_player_expand, .tvp_app_banner,.mod_box, .mod_footer, .tvp_app_banner, .site_header, .tvp_app_btn {
           display: none !important;
@@ -60,7 +60,7 @@
   </head>
   <body>
     <div id="content">
-      <iframe name="videoFrame" frameBorder="0" id="videoFrame" onload="addStyle()"  src="http://v.qq.com/page/a/k/1/a0176w5ojk1.html" width="100%" height="100%"></iframe>
+      <iframe name="videoFrame" frameBorder="0" id="videoFrame" onload="addStyle()"  src="#{VideoSrc}" width="100%" height="100%"></iframe>
     </div>
   </body>
 </html>

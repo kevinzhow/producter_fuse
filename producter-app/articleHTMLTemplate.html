@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width height=device-height user-scalable=no initial-scale=1.0 minimum-scale=1.0 maximum-scale=1.0 target-densitydpi=device-dpi">
+    <meta charset="utf-8">
+    <title></title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab' rel='stylesheet' type='text/css'>
+    <style>
+    body{
+      margin:0 !important;
+      padding-left: 8% !important;
+      padding-right: 8% !important;
+      font-family: 'Lato', sans-serif;
+    }
+
+    h1, h2, h3, h4, h5 {
+      margin-top: 50pt;
+    }
+
+    p, h1, h2, h3, h4, h5, a{
+      color: black;
+      font-family: 'Lato', sans-serif;
+    }
+
+    h1 {
+      margin-top: 20pt;
+      margin-bottom: 10pt;
+    }
+
+    a {
+        text-decoration: none;
+        position: relative;
+    }
+
+    .author {
+      font-size: 9pt;
+      font-weight: lighter;
+      color: rgb(176, 176, 176);
+      margin-top: 0;
+    }
+
+    a:after {
+        content: '';
+
+        width: 100%;
+        position: absolute;
+        left: 0;
+        bottom: -2pt;
+
+        border-width: 0 0 1pt;
+        border-style: solid;
+        border-color: rgb(232, 1, 1);
+    }
+
+
+
+    p {
+      color: #444;
+      line-height: 22pt;
+      margin-bottom: 30pt;
+    }
+
+    img {
+      width: 119%;
+      height: auto;
+      margin-left: -9.5%
+    }
+
+    code {
+      font-family: 'Roboto Slab', serif;
+    }
+    </style>
+
+  </head>
+  <body>
+    <div id="container">
+      <h1>#{title}</h1>
+
+      <p class="author">
+        #{author}
+      </p>
+
+      #{content}
+
+    </div>
+    <link href="http://cdn.bootcss.com/highlight.js/8.9.1/styles/github-gist.min.css" rel="stylesheet">
+    <script src="http://cdn.bootcss.com/highlight.js/8.9.1/highlight.min.js"></script>
+    <script >hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>
