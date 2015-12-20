@@ -1,4 +1,4 @@
-<App Background="#fff" Theme="Basic">
+<App Background="#fff" Theme="Native">
   <iOS.StatusBarConfig IsVisible="false"/>
 	<JavaScript File="Controller/MainViewController.js" />
 	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
