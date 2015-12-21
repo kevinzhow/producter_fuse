@@ -1,6 +1,7 @@
 <App Background="#fff" Theme="Native">
   <iOS.StatusBarConfig IsVisible="false"/>
 	<JavaScript File="Controller/MainViewController.js" />
+	<JavaScript File="Lib/CloudAPI.js" ux:Global="CloudAPI" />
 	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
 	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
 	<Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />

@@ -1,35 +1,14 @@
 var Observable = require('FuseJS/Observable');
 var videoHTMLTemplate = require("videoHTMLTemplate");
 var articleHTMLTemplate = require("articleHTMLTemplate");
+var CloudAPI = require('CloudAPI');
+
 var storage = require('FuseJS/Storage');
 var Moment = require('Moment');
-var ServerPath = "https://api.apple-cloudkit.com/database/1/";
-var CloudIdentifier = "iCloud.kevinzhow.Producter";
-var Enviroment = "development"
-var DataBase = "public/records"
-var DataMethod = "query"
-var ckAPIToken= "84df66d97de04cd3ab8fb24d45150d7456ee65d6322c98b67d09985d3c0d9a58"
 
 var videoHTMLTemplateString = videoHTMLTemplate.readSync();
 var articleHTMLTemplateString = articleHTMLTemplate.readSync();
-// Fetch Article data
 
-var articleRequest = {
-	query: {
-		recordType: "article",
-		filterBy: [{
-				comparator: "EQUALS",
-				fieldName: "type",
-				fieldValue:{
-						value: "article"
-				},
-        sortBy: [{
-            fieldName: "article_id",
-            ascending: false
-        }]
-		}]
-	}
-}
 
 // Articles
 
@@ -40,13 +19,12 @@ function Article(resource) {
 articles = Observable();
 ArticlePageSpinEnabled = Observable(false);
 
-var articleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
 // console.log(articleQuery);
 ArticlePageSpinEnabled.value = true;
-fetch(articleQuery, {
+fetch(CloudAPI.articleQuery, {
 	method: 'POST',
   headers: { "Content-type": "application/json"},
-  body: JSON.stringify(articleRequest)
+  body: JSON.stringify(CloudAPI.articleRequest)
 })
 .then(function(response) {
 	status = response.status;
@@ -85,32 +63,14 @@ fetch(articleQuery, {
 
 // Fetch Video Article data
 
-var videoArticleRequest = {
-	query: {
-		recordType: "article",
-		filterBy: [{
-				comparator: "EQUALS",
-				fieldName: "type",
-				fieldValue:{
-						value: "video"
-				},
-        sortBy: [{
-            fieldName: "article_id",
-            ascending: false
-        }]
-		}]
-	}
-}
-
-var videoArticleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
 // console.log(articleQuery);
 VideoPageSpinEnabled = Observable(false);
 VideoPageSpinEnabled.value = true
 
-fetch(videoArticleQuery, {
+fetch(CloudAPI.videoArticleQuery, {
 	method: 'POST',
   headers: { "Content-type": "application/json"},
-  body: JSON.stringify(videoArticleRequest)
+  body: JSON.stringify(CloudAPI.videoArticleRequest)
 })
 .then(function(response) {
 	status = response.status;
