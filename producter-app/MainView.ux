@@ -1,18 +1,18 @@
 <App Background="#fff" Theme="Basic">
   <iOS.StatusBarConfig IsVisible="false"/>
-	<JavaScript File="Controller/MainViewController.js" />
-	<JavaScript File="Lib/CloudAPI.js" ux:Global="CloudAPI" />
-	<Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
-	<Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
-	<Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
-	<JavaScript File="assets/js/moment.min.js" ux:Global="Moment"/>
-	<TextFile File="videoHTMLTemplate.html" ux:Global="videoHTMLTemplate" />
-	<TextFile File="articleHTMLTemplate.html" ux:Global="articleHTMLTemplate" />
+  <JavaScript File="Controller/MainViewController.js" />
+  <JavaScript File="Lib/CloudAPI.js" ux:Global="CloudAPI" />
+  <Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
+  <Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
+  <Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
+  <JavaScript File="assets/js/moment.min.js" ux:Global="Moment"/>
+  <TextFile File="videoHTMLTemplate.html" ux:Global="videoHTMLTemplate" />
+  <TextFile File="articleHTMLTemplate.html" ux:Global="articleHTMLTemplate" />
 
-	<Panel>
+  <Panel>
 
-		<HierarchicalNavigation ux:Name="NavigationController" ReuseExistingNode="false" Active="mainPage" />
-		<Style>
+    <HierarchicalNavigation ux:Name="NavigationController" ReuseExistingNode="false" Active="mainPage" />
+    <Style>
         <Page>
             <EnteringAnimation>
                 <Move X="1" RelativeTo="ParentSize" />
@@ -22,179 +22,179 @@
             </ExitingAnimation>
         </Page>
     </Style>
-		<!-- Page -->
-		<Page ux:Name="mainPage">
-			<!-- NavigationBar -->
-			<StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top" Y="-80" Visibility="Hidden">
-				<Panel ux:Name="NavigationBar" Height="80" IsEnabled="{NavigationBarIsEnabled}">
-						<Rectangle CornerRadius="0" Alignment="Center">
-							<Stroke Width="2" Brush="#000"/>
-							<Text Font="Bold" FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
-						</Rectangle>
-						<WhileDisabled>
-						    <Change NavigationBarContainer.Y="-80"  Duration="0.3"
-	                    Easing="CircularInOut"/>
-								<Change NavigationBarContainer.Opacity="0"  Duration="0.3"/>
-								<Set NavigationBarContainer.Visibility="Hidden" Delay="0.3"/>
-						</WhileDisabled>
-						<WhileEnabled>
-						    <Change NavigationBarContainer.Y="0"  Duration="0.3"
-	                    Easing="CircularInOut"/>
-								<Change NavigationBarContainer.Opacity="1"  Duration="0.3"/>
-								<Set NavigationBarContainer.Visibility="Visible" />
-						</WhileEnabled>
-				</Panel>
-			</StackPanel>
-			<!-- TabBar -->
-			<Panel ux:Name="TabBar" Alignment="Bottom" Width="100%" Background="#fff" IsEnabled="{TabBarIsEnabled}">
-				<WhileDisabled>
-						<Change TabBar.Y="80"  Duration="0.5"
-									Easing="CircularInOut"/>
-				</WhileDisabled>
+    <!-- Page -->
+    <Page ux:Name="mainPage">
+      <!-- NavigationBar -->
+      <StackPanel ux:Name="NavigationBarContainer" Background="#fff" Alignment="Top" Y="-80" Visibility="Hidden">
+        <Panel ux:Name="NavigationBar" Height="80" IsEnabled="{NavigationBarIsEnabled}">
+            <Rectangle CornerRadius="0" Alignment="Center">
+              <Stroke Width="2" Brush="#000"/>
+              <Text Font="Bold" FontSize="13" Value="{title.name}" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+            </Rectangle>
+            <WhileDisabled>
+                <Change NavigationBarContainer.Y="-80"  Duration="0.3"
+                      Easing="CircularInOut"/>
+                <Change NavigationBarContainer.Opacity="0"  Duration="0.3"/>
+                <Set NavigationBarContainer.Visibility="Hidden" Delay="0.3"/>
+            </WhileDisabled>
+            <WhileEnabled>
+                <Change NavigationBarContainer.Y="0"  Duration="0.3"
+                      Easing="CircularInOut"/>
+                <Change NavigationBarContainer.Opacity="1"  Duration="0.3"/>
+                <Set NavigationBarContainer.Visibility="Visible" />
+            </WhileEnabled>
+        </Panel>
+      </StackPanel>
+      <!-- TabBar -->
+      <Panel ux:Name="TabBar" Alignment="Bottom" Width="100%" Background="#fff" IsEnabled="{TabBarIsEnabled}">
+        <WhileDisabled>
+            <Change TabBar.Y="80"  Duration="0.5"
+                  Easing="CircularInOut"/>
+        </WhileDisabled>
 
-				<Rectangle ux:Name="TabActiveIndicator" Height="3" Fill="#000" Width="100" Alignment="Bottom" X="0"/>
-				<Grid ColumnData="100,100,100" Height="45" >
-					<Panel ux:Name="articleTab" Background="#fff">
-						<Text Font="Bold"  ux:Name="articleTabText" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-						<Clicked>
-							<Set articlePage.IsEnabled="True"/>
-							<Set videoPage.IsEnabled="False"/>
-							<Set settingsPage.IsEnabled="False"/>
-						</Clicked>
-					</Panel>
-					<Panel ux:Name="videoTab" Background="#fff">
-						<Text Font="Bold"  ux:Name="videoTabText" Value="Video" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-						<Clicked>
-							<Set articlePage.IsEnabled="False"/>
-							<Set videoPage.IsEnabled="True"/>
-							<Set settingsPage.IsEnabled="False"/>
-						</Clicked>
-					</Panel>
-					<Panel ux:Name="settingsTab" Background="#fff">
-						<Text Font="Bold"  ux:Name="settingsTabText" Value="Setting" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-						<Clicked>
-							<Set articlePage.IsEnabled="False"/>
-							<Set videoPage.IsEnabled="False"/>
-							<Set settingsPage.IsEnabled="True"/>
-						</Clicked>
-					</Panel>
-				</Grid>
+        <Rectangle ux:Name="TabActiveIndicator" Height="3" Fill="#000" Width="100" Alignment="Bottom" X="0"/>
+        <Grid ColumnData="100,100,100" Height="45" >
+          <Panel ux:Name="articleTab" Background="#fff">
+            <Text Font="Bold"  ux:Name="articleTabText" Value="Article" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+            <Clicked>
+              <Set articlePage.IsEnabled="True"/>
+              <Set videoPage.IsEnabled="False"/>
+              <Set settingsPage.IsEnabled="False"/>
+            </Clicked>
+          </Panel>
+          <Panel ux:Name="videoTab" Background="#fff">
+            <Text Font="Bold"  ux:Name="videoTabText" Value="Video" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+            <Clicked>
+              <Set articlePage.IsEnabled="False"/>
+              <Set videoPage.IsEnabled="True"/>
+              <Set settingsPage.IsEnabled="False"/>
+            </Clicked>
+          </Panel>
+          <Panel ux:Name="settingsTab" Background="#fff">
+            <Text Font="Bold"  ux:Name="settingsTabText" Value="Setting" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+            <Clicked>
+              <Set articlePage.IsEnabled="False"/>
+              <Set videoPage.IsEnabled="False"/>
+              <Set settingsPage.IsEnabled="True"/>
+            </Clicked>
+          </Panel>
+        </Grid>
 
-			</Panel>
-			<Panel Height="100%">
-					<Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
+      </Panel>
+      <Panel Height="100%">
+          <Attractor ux:Name="TabActiveIndicatorX" Target="TabActiveIndicator.X"/>
 
-					<!-- Article Page -->
-					<Panel ux:Name="articlePage" Background="#fff" Visibility="Visible" IsEnabled="True">
-						<!-- Animation -->
-						<WhileEnabled>
-							<Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
-							<Change Easing="QuadraticInOut" Duration="0.3" articleTabText.TextColor="#000"/>
-							<Set NavigationBar.IsEnabled="False"/>
-							<Set articlePage.Visibility="Visible"/>
-					  </WhileEnabled>
+          <!-- Article Page -->
+          <Panel ux:Name="articlePage" Background="#fff" Visibility="Visible" IsEnabled="True">
+            <!-- Animation -->
+            <WhileEnabled>
+              <Move X="0" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+              <Change Easing="QuadraticInOut" Duration="0.3" articleTabText.TextColor="#000"/>
+              <Set NavigationBar.IsEnabled="False"/>
+              <Set articlePage.Visibility="Visible"/>
+            </WhileEnabled>
 
-						<WhileDisabled>
-							<Set articlePage.Visibility="Hidden"/>
-						</WhileDisabled>
+            <WhileDisabled>
+              <Set articlePage.Visibility="Hidden"/>
+            </WhileDisabled>
 
-						<SpinIndicator IsEnabled="{ArticlePageSpinEnabled}"/>
+            <SpinIndicator IsEnabled="{ArticlePageSpinEnabled}"/>
 
-						<ScrollView Padding="0,0,0,50">
-							<StackPanel Alignment="Top">
-								<Each Items="{articles}">
-									<Panel ux:Name="Article" Margin="0,10,0,25" Background="#fff">
-										<StackPanel Width="85%" >
-											<Text TextWrapping="Wrap" Font="Bold" FontSize="23" Value="{resource.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
-											<Text Font="Light" Width="100%" FontSize="12" Value="{resource.subtitle}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
-											<Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{resource.short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 0, 0"/>
+            <ScrollView Padding="0,0,0,50">
+              <StackPanel Alignment="Top">
+                <Each Items="{articles}">
+                  <Panel ux:Name="Article" Margin="0,10,0,25" Background="#fff">
+                    <StackPanel Width="85%" >
+                      <Text TextWrapping="Wrap" Font="Bold" FontSize="23" Value="{title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+                      <Text Font="Light" Width="100%" FontSize="12" Value="{subtitle}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
+                      <Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 0, 0"/>
 
-											<Clicked Handler="{toggleArticlePresented}">
-												<NavigateTo Target="articleDetailPage"/>
-											</Clicked>
-										</StackPanel>
-									</Panel>
-								</Each>
-							</StackPanel>
-						</ScrollView>
-					</Panel>
+                      <Clicked Handler="{toggleArticlePresented}">
+                        <NavigateTo Target="articleDetailPage"/>
+                      </Clicked>
+                    </StackPanel>
+                  </Panel>
+                </Each>
+              </StackPanel>
+            </ScrollView>
+          </Panel>
 
-					<!-- Video Page -->
-					<Panel ux:Name="videoPage" Background="#fff" Visibility="Hidden" IsEnabled="False">
+          <!-- Video Page -->
+          <Panel ux:Name="videoPage" Background="#fff" Visibility="Hidden" IsEnabled="False">
 
-						<!-- Animation -->
-						<WhileEnabled>
-							<Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
-							<Change Easing="QuadraticInOut" Duration="0.3" videoTabText.TextColor="#000"/>
-							<Set videoPage.Visibility="Visible"/>
-							<Set NavigationBar.IsEnabled="True"/>
-						</WhileEnabled>
+            <!-- Animation -->
+            <WhileEnabled>
+              <Move X="100" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+              <Change Easing="QuadraticInOut" Duration="0.3" videoTabText.TextColor="#000"/>
+              <Set videoPage.Visibility="Visible"/>
+              <Set NavigationBar.IsEnabled="True"/>
+            </WhileEnabled>
 
-						<WhileDisabled>
-							<Set videoPage.Visibility="Hidden"/>
-						</WhileDisabled>
-						<SpinIndicator IsEnabled="{VideoPageSpinEnabled}"/>
-						<ScrollView Padding="0, 80, 0, 0">
-							<StackPanel>
-								<Each Items="{videos}">
-									<!-- Video Cell -->
-									<Panel ux:Name="VideoArticle" Margin="0,10,0,25" Background="#fff">
-										<StackPanel Width="80%" >
-										  <Rectangle>
-											<Image ux:Name="VideoPoster" Url="{resource.poster}" Width="100%" Height="200" >
-												<DropShadow Angle="90" Distance="12" Size="25" Spread="0.1" Color="#ddd" />
-												<WhilePressed>
-													<Scale Factor="0.98" Duration="0.1"/>
-												</WhilePressed>
-											</Image>
-											</Rectangle>
-											<Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="{resource.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
-											<Text Font="Light" FontSize="12" Value="{resource.created_at}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
-											<Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{resource.short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 15, 0"/>
+            <WhileDisabled>
+              <Set videoPage.Visibility="Hidden"/>
+            </WhileDisabled>
+            <SpinIndicator IsEnabled="{VideoPageSpinEnabled}"/>
+            <ScrollView Padding="0, 80, 0, 0">
+              <StackPanel>
+                <Each Items="{videos}">
+                  <!-- Video Cell -->
+                  <Panel ux:Name="VideoArticle" Margin="0,10,0,25" Background="#fff">
+                    <StackPanel Width="80%" >
+                      <Rectangle>
+                      <Image ux:Name="VideoPoster" Url="{poster}" Width="100%" Height="200" >
+                        <DropShadow Angle="90" Distance="12" Size="25" Spread="0.1" Color="#ddd" />
+                        <WhilePressed>
+                          <Scale Factor="0.98" Duration="0.1"/>
+                        </WhilePressed>
+                      </Image>
+                      </Rectangle>
+                      <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="{title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+                      <Text Font="Light" FontSize="12" Value="{created_at}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
+                      <Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 15, 0"/>
 
-											<Clicked Handler="{toggleArticlePresented}">
-												<NavigateTo Target="videoDetailPage"/>
-											</Clicked>
-										</StackPanel>
-									</Panel>
-									<!-- End Animation -->
-								</Each>
-							</StackPanel>
-							<ScrollingAnimation From="0" To="400">
-								<Change Target="NavigationBar.Height" Value="50"/>
-							</ScrollingAnimation>
-						</ScrollView>
-					</Panel>
+                      <Clicked Handler="{toggleArticlePresented}">
+                        <NavigateTo Target="videoDetailPage"/>
+                      </Clicked>
+                    </StackPanel>
+                  </Panel>
+                  <!-- End Animation -->
+                </Each>
+              </StackPanel>
+              <ScrollingAnimation From="0" To="400">
+                <Change Target="NavigationBar.Height" Value="50"/>
+              </ScrollingAnimation>
+            </ScrollView>
+          </Panel>
 
-					<!-- Settings Page -->
-					<Panel ux:Name="settingsPage" Background="#fff" Visibility="Hidden" IsEnabled="False">
-						<!-- Animation -->
-						<WhileEnabled>
-							<Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
-							<Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
-							<Set NavigationBar.IsEnabled="False"/>
-							<Set settingsPage.Visibility="Visible"/>
-						</WhileEnabled>
-						<WhileDisabled>
-							<Set settingsPage.Visibility="Hidden"/>
-						</WhileDisabled>
-						<Settings/>
-					</Panel>
-			</Panel>
-		</Page>
+          <!-- Settings Page -->
+          <Panel ux:Name="settingsPage" Background="#fff" Visibility="Hidden" IsEnabled="False">
+            <!-- Animation -->
+            <WhileEnabled>
+              <Move X="200" Easing="QuadraticInOut" Duration="0.3" Target="TabActiveIndicator"/>
+              <Change Easing="QuadraticInOut" Duration="0.3" settingsTabText.TextColor="#000"/>
+              <Set NavigationBar.IsEnabled="False"/>
+              <Set settingsPage.Visibility="Visible"/>
+            </WhileEnabled>
+            <WhileDisabled>
+              <Set settingsPage.Visibility="Hidden"/>
+            </WhileDisabled>
+            <Settings/>
+          </Panel>
+      </Panel>
+    </Page>
 
-		<!-- Video Detail Page -->
-		<Page ux:Name="videoDetailPage">
-			<!-- VideoDetail -->
-			<VideoDetailPage />
-		</Page>
-		<!-- End Video Detail Page -->
+    <!-- Video Detail Page -->
+    <Page ux:Name="videoDetailPage">
+      <!-- VideoDetail -->
+      <VideoDetailPage />
+    </Page>
+    <!-- End Video Detail Page -->
 
-		<!-- Article Detail Page -->
-		<Page ux:Name="articleDetailPage">
-			<!-- VideoDetail -->
-			<ArticleDetailPage />
-		</Page>
-		<!-- End Article Detail Page -->
-	</Panel>
+    <!-- Article Detail Page -->
+    <Page ux:Name="articleDetailPage">
+      <!-- VideoDetail -->
+      <ArticleDetailPage />
+    </Page>
+    <!-- End Article Detail Page -->
+  </Panel>
 </App>

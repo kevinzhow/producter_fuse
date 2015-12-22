@@ -11,11 +11,6 @@ var articleHTMLTemplateString = articleHTMLTemplate.readSync();
 
 
 // Articles
-
-function Article(resource) {
-  this.resource = resource;
-}
-
 articles = Observable();
 ArticlePageSpinEnabled = Observable(false);
 
@@ -34,7 +29,7 @@ fetch(CloudAPI.articleQuery, {
 .then(function(responseObject) {
   articles.clear()
   ArticlePageSpinEnabled.value = false;
-   var records = responseObject.records;
+   var records = responseObject.records.reverse();
    for (var i = 0; i < records.length; i++) {
      var record = records[i];
      var record_fields = records[i].fields;
@@ -54,7 +49,7 @@ fetch(CloudAPI.articleQuery, {
 
       article.contentHTML = htmlContent
       console.log("Add Article");
-       articles.add(new Article(article));
+       articles.add(article);
    }
 }).catch(function(err) {
     // An error occured parsing Json
@@ -99,7 +94,7 @@ fetch(CloudAPI.videoArticleQuery, {
       }
       console.log(video.mediaHTML);
       console.log("Add Video Article");
-       videos.add(new Article(video));
+       videos.add(video);
    }
 }).catch(function(err) {
     // An error occured parsing Json
@@ -109,7 +104,7 @@ fetch(CloudAPI.videoArticleQuery, {
 //Videos
 videos = Observable();
 
-var presentedArticle =  Observable(new Article());
+var presentedArticle =  Observable({});
 
 title = Observable(function () {
     titleData = {name: 'iOS With Girl Friend'}
@@ -147,15 +142,15 @@ function toggleArticlePresented(args) {
   if (ArticlePresented.value == 'Presented') {
     ArticlePresented.value = 'Default';
     console.log("Article " + ArticlePresented.value);
-    if 	(presentedArticle.value.resource.type == "video") {
+    if 	(presentedArticle.value.type == "video") {
       console.log("Add NavigationBar Back");
       toggleNavigationBar(true)
     }
-    presentedArticle.value.resource.type.contentHTML = "";
     toggleTabBar(true)
   } else {
     ArticlePresented.value = 'Presented';
     presentedArticle.value = args.data;
+    console.log(args.data.contentHTML);
     toggleNavigationBar(false)
     toggleTabBar(false)
   }
