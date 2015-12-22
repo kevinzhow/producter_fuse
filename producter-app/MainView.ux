@@ -1,4 +1,4 @@
-<App Background="#fff" Theme="Native">
+<App Background="#fff" Theme="Basic">
   <iOS.StatusBarConfig IsVisible="false"/>
 	<JavaScript File="Controller/MainViewController.js" />
 	<JavaScript File="Lib/CloudAPI.js" ux:Global="CloudAPI" />
