@@ -91,8 +91,6 @@ fetch(CloudAPI.videoArticleQuery, {
 				content: record_fields.content.value,
 				type: record_fields.type.value,
 				poster: record_fields.posterURL.value,
-				mediaURL: record_fields.mediaURL.value,
-				mediaHTML: videoHTMLTemplateString.replace(/#{VideoSrc}/, record_fields.mediaURL.value),
 				youtubeURL: record_fields.youtube_url.value,
 				youkuURL: record_fields.youku_url.value,
 				bilibiliURL: record_fields.bilibili_url.value,
