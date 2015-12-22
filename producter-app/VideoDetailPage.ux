@@ -1,21 +1,21 @@
 <Panel ux:Name="VideoDetailPage" Height="100%" Width="100%" Background="#fff" Alignment="Top">
   <StackPanel Width="80%" Alignment="Top">
-    <Image ux:Name="VideoPoster" Url="{presentedArticle.poster}" Width="100%" Height="200" >
+    <Image ux:Name="VideoPoster" Url="{ArticlePoster}" Width="100%" Height="200" >
       <DropShadow Angle="90" Distance="12" Size="25" Spread="0.1" Color="#ddd" />
       <WhilePressed>
         <Scale Factor="0.98" Duration="0.1"/>
       </WhilePressed>
     </Image>
-    <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="{presentedArticle.title}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
-    <Text Font="Light" FontSize="12" Value="{presentedArticle.created_at}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
-    <Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{presentedArticle.short_desc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="{ArticleTitle}" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+    <Text Font="Light" FontSize="12" Value="{ArticleCreatedAt}" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Regular" FontSize="13" Value="{ArticleDesc}" Alignment="Left" TextColor="#000"  Margin="0, 15, 15, 0"/>
     <Text TextWrapping="Wrap" Font="Bold" FontSize="18" Value="Videos" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
     <Grid  ColumnCount="3">
     <Rectangle Alignment="Left" Margin="0,20,0,0">
       <Stroke Width="2" Brush="#000"/>
       <Text Font="Bold" FontSize="13" Value="YouTube" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
       <Clicked>
-        <LaunchUri Uri="{presentedArticle.youtubeURL}"/>
+        <LaunchUri Uri="{ArticleYoutube}"/>
       </Clicked>
       <WhilePressed>
         <Scale Factor="0.95" Duration="0.1"/>
@@ -26,7 +26,7 @@
       <Stroke Width="2" Brush="#000"/>
       <Text Font="Bold" FontSize="13" Value="Youku" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
       <Clicked>
-        <LaunchUri Uri="{presentedArticle.youkuURL}"/>
+        <LaunchUri Uri="{ArticleYouku}"/>
       </Clicked>
       <WhilePressed>
         <Scale Factor="0.95" Duration="0.1"/>
@@ -37,7 +37,7 @@
       <Stroke Width="2" Brush="#000"/>
       <Text Font="Bold" FontSize="13" Value="Bilibili" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
       <Clicked>
-        <LaunchUri Uri="{presentedArticle.bilibiliURL}"/>
+        <LaunchUri Uri="{ArticleBilibili}"/>
       </Clicked>
       <WhilePressed>
         <Scale Factor="0.95" Duration="0.1"/>

@@ -13,7 +13,14 @@ var articleHTMLTemplateString = articleHTMLTemplate.readSync();
 // Articles
 articles = Observable();
 ArticlePageSpinEnabled = Observable(false);
-
+ArticleTitle = Observable("");
+ArticlePoster = Observable("");
+ArticleDesc = Observable("");
+ArticleCreatedAt = Observable("");
+ArticleGithub = Observable("");
+ArticleYouku = Observable("");
+ArticleYoutube = Observable("");
+ArticleBilibili = Observable("");
 // console.log(articleQuery);
 ArticlePageSpinEnabled.value = true;
 fetch(CloudAPI.articleQuery, {
@@ -106,6 +113,8 @@ videos = Observable();
 
 var presentedArticle =  Observable({});
 
+presentedArticleHTML = Observable("");
+
 title = Observable(function () {
     titleData = {name: 'iOS With Girl Friend'}
     return titleData;
@@ -150,7 +159,21 @@ function toggleArticlePresented(args) {
   } else {
     ArticlePresented.value = 'Presented';
     presentedArticle.value = args.data;
-    console.log(args.data.contentHTML);
+
+    if 	(args.data.type == "video") {
+
+      ArticleTitle.value = args.data.title;
+      ArticlePoster.value = args.data.poster;
+      ArticleDesc.value = args.data.short_desc;
+      ArticleCreatedAt.value = args.data.created_at;
+      ArticleGithub.value = args.data.githubURL;
+      ArticleYouku.value = args.data.youkuURL;
+      ArticleYoutube.value = args.data.youtubeURL;
+      ArticleBilibili.value = args.data.bilibiliURL;
+
+    } else {
+      presentedArticleHTML.value = args.data.contentHTML;
+    }
     toggleNavigationBar(false)
     toggleTabBar(false)
   }
@@ -166,6 +189,15 @@ module.exports = {
   ArticlePageSpinEnabled: ArticlePageSpinEnabled,
   VideoPageSpinEnabled: VideoPageSpinEnabled,
   NavigationBarIsEnabled: NavigationBarIsEnabled,
+  presentedArticleHTML: presentedArticleHTML,
+  ArticleTitle: ArticleTitle,
+  ArticlePoster: ArticlePoster,
+  ArticleDesc: ArticleDesc,
+  ArticleCreatedAt: ArticleCreatedAt,
+  ArticleGithub: ArticleGithub,
+  ArticleYouku: ArticleYouku,
+  ArticleYoutube: ArticleYoutube,
+  ArticleBilibili: ArticleBilibili,
   toggleArticlePresented: toggleArticlePresented,
   title : title,
 };
