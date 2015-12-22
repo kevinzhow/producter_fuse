@@ -23,6 +23,7 @@ ArticleYoutube = Observable("");
 ArticleBilibili = Observable("");
 // console.log(articleQuery);
 ArticlePageSpinEnabled.value = true;
+
 fetch(CloudAPI.articleQuery, {
   method: 'POST',
   headers: { "Content-type": "application/json"},
@@ -55,8 +56,7 @@ fetch(CloudAPI.articleQuery, {
       htmlContent = htmlContent.replace(/#{author}/, article.subtitle)
 
       article.contentHTML = htmlContent
-      console.log("Add Article");
-       articles.add(article);
+      articles.add(article);
    }
 }).catch(function(err) {
     // An error occured parsing Json
@@ -100,8 +100,7 @@ fetch(CloudAPI.videoArticleQuery, {
         created_at: Moment(record.created.timestamp).fromNow()
       }
       console.log(video.mediaHTML);
-      console.log("Add Video Article");
-       videos.add(video);
+      videos.add(video);
    }
 }).catch(function(err) {
     // An error occured parsing Json
