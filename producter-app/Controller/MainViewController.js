@@ -13,7 +13,7 @@ var articleHTMLTemplateString = articleHTMLTemplate.readSync();
 // Articles
 
 function Article(resource) {
-	this.resource = resource;
+  this.resource = resource;
 }
 
 articles = Observable();
@@ -22,43 +22,43 @@ ArticlePageSpinEnabled = Observable(false);
 // console.log(articleQuery);
 ArticlePageSpinEnabled.value = true;
 fetch(CloudAPI.articleQuery, {
-	method: 'POST',
+  method: 'POST',
   headers: { "Content-type": "application/json"},
   body: JSON.stringify(CloudAPI.articleRequest)
 })
 .then(function(response) {
-	status = response.status;
-	console.log("Fetch article records " + status);
-	return response.json();
+  status = response.status;
+  console.log("Fetch article records " + status);
+  return response.json();
  })
 .then(function(responseObject) {
-	articles.clear()
-	ArticlePageSpinEnabled.value = false;
-	 var records = responseObject.records.reverse();
-	 for (var i = 0; i < records.length; i++) {
-		 var record = records[i];
-		 var record_fields = records[i].fields;
-		 var article = {
-				title:record_fields.title.value,
-				author: record_fields.author.value,
-				short_desc: record_fields.description.value,
-				content: record_fields.content.value,
-				type: record_fields.type.value,
-				created_at: Moment(record.created.timestamp).fromNow()
-			}
-			article.subtitle = article.author + " " + article.created_at
+  articles.clear()
+  ArticlePageSpinEnabled.value = false;
+   var records = responseObject.records;
+   for (var i = 0; i < records.length; i++) {
+     var record = records[i];
+     var record_fields = records[i].fields;
+     var article = {
+        title:record_fields.title.value,
+        author: record_fields.author.value,
+        short_desc: record_fields.description.value,
+        content: record_fields.content.value,
+        type: record_fields.type.value,
+        created_at: Moment(record.created.timestamp).fromNow()
+      }
+      article.subtitle = article.author + " " + article.created_at
 
-			var htmlContent = articleHTMLTemplateString.replace(/#{content}/, article.content)
-			htmlContent = htmlContent.replace(/#{title}/, article.title)
-			htmlContent = htmlContent.replace(/#{author}/, article.subtitle)
+      var htmlContent = articleHTMLTemplateString.replace(/#{content}/, article.content)
+      htmlContent = htmlContent.replace(/#{title}/, article.title)
+      htmlContent = htmlContent.replace(/#{author}/, article.subtitle)
 
-			article.contentHTML = htmlContent
-			console.log("Add Article");
-		 	articles.add(new Article(article));
-	 }
+      article.contentHTML = htmlContent
+      console.log("Add Article");
+       articles.add(new Article(article));
+   }
 }).catch(function(err) {
     // An error occured parsing Json
-		console.log("Fetch Error" + err);
+    console.log("Fetch Error" + err);
 });
 
 // Fetch Video Article data
@@ -68,42 +68,42 @@ VideoPageSpinEnabled = Observable(false);
 VideoPageSpinEnabled.value = true
 
 fetch(CloudAPI.videoArticleQuery, {
-	method: 'POST',
+  method: 'POST',
   headers: { "Content-type": "application/json"},
   body: JSON.stringify(CloudAPI.videoArticleRequest)
 })
 .then(function(response) {
-	status = response.status;
-	console.log("Fetch video article records " + status);
-	return response.json();
+  status = response.status;
+  console.log("Fetch video article records " + status);
+  return response.json();
  })
 .then(function(responseObject) {
-	  VideoPageSpinEnabled.value = false
-		videos.clear()
-		var records = responseObject.records;
-		for (var i = 0; i < records.length; i++) {
-		 var record = records[i];
-		 var record_fields = records[i].fields;
-		 var video = {
-				title:record_fields.title.value,
-				author: record_fields.author.value,
-				short_desc: record_fields.description.value,
-				content: record_fields.content.value,
-				type: record_fields.type.value,
-				poster: record_fields.posterURL.value,
-				youtubeURL: record_fields.youtube_url.value,
-				youkuURL: record_fields.youku_url.value,
-				bilibiliURL: record_fields.bilibili_url.value,
-				githubURL: record_fields.github_url.value,
-				created_at: Moment(record.created.timestamp).fromNow()
-			}
-			console.log(video.mediaHTML);
-			console.log("Add Video Article");
-		 	videos.add(new Article(video));
-	 }
+    VideoPageSpinEnabled.value = false
+    videos.clear()
+    var records = responseObject.records;
+    for (var i = 0; i < records.length; i++) {
+     var record = records[i];
+     var record_fields = records[i].fields;
+     var video = {
+        title:record_fields.title.value,
+        author: record_fields.author.value,
+        short_desc: record_fields.description.value,
+        content: record_fields.content.value,
+        type: record_fields.type.value,
+        poster: record_fields.posterURL.value,
+        youtubeURL: record_fields.youtube_url.value,
+        youkuURL: record_fields.youku_url.value,
+        bilibiliURL: record_fields.bilibili_url.value,
+        githubURL: record_fields.github_url.value,
+        created_at: Moment(record.created.timestamp).fromNow()
+      }
+      console.log(video.mediaHTML);
+      console.log("Add Video Article");
+       videos.add(new Article(video));
+   }
 }).catch(function(err) {
     // An error occured parsing Json
-		console.log("Fetch Video Error" + err);
+    console.log("Fetch Video Error" + err);
 });
 
 //Videos
@@ -112,8 +112,8 @@ videos = Observable();
 var presentedArticle =  Observable(new Article());
 
 title = Observable(function () {
-		titleData = {name: 'iOS With Girl Friend'}
-		return titleData;
+    titleData = {name: 'iOS With Girl Friend'}
+    return titleData;
 });
 
 NavigationBarIsEnabled = Observable(false);
@@ -123,54 +123,54 @@ TabBarIsEnabled = Observable(true);
 ArticlePresented = Observable('Default');
 
 function toggleNavigationBar(enable) {
-	if (enable != null) {
-		NavigationBarIsEnabled.value = enable
-	} else if (NavigationBarIsEnabled.value) {
-		NavigationBarIsEnabled.value = false
-	} else {
-		NavigationBarIsEnabled.value = true
-	}
+  if (enable != null) {
+    NavigationBarIsEnabled.value = enable
+  } else if (NavigationBarIsEnabled.value) {
+    NavigationBarIsEnabled.value = false
+  } else {
+    NavigationBarIsEnabled.value = true
+  }
 }
 
 function toggleTabBar(enable) {
-	if (enable != null) {
-		console.log("Navigation Bar " + enable);
-		TabBarIsEnabled.value = enable
-	} else if (TabBarIsEnabled.value) {
-		TabBarIsEnabled.value = false
-	} else {
-		TabBarIsEnabled.value = true
-	}
+  if (enable != null) {
+    console.log("Navigation Bar " + enable);
+    TabBarIsEnabled.value = enable
+  } else if (TabBarIsEnabled.value) {
+    TabBarIsEnabled.value = false
+  } else {
+    TabBarIsEnabled.value = true
+  }
 }
 
 function toggleArticlePresented(args) {
-	if (ArticlePresented.value == 'Presented') {
-		ArticlePresented.value = 'Default';
-		console.log("Article " + ArticlePresented.value);
-		if 	(presentedArticle.value.resource.type == "video") {
-			console.log("Add NavigationBar Back");
-			toggleNavigationBar(true)
-		}
-		presentedArticle.value.resource.type.contentHTML = "";
-		toggleTabBar(true)
-	} else {
-		ArticlePresented.value = 'Presented';
-		presentedArticle.value = args.data;
-		toggleNavigationBar(false)
-		toggleTabBar(false)
-	}
+  if (ArticlePresented.value == 'Presented') {
+    ArticlePresented.value = 'Default';
+    console.log("Article " + ArticlePresented.value);
+    if 	(presentedArticle.value.resource.type == "video") {
+      console.log("Add NavigationBar Back");
+      toggleNavigationBar(true)
+    }
+    presentedArticle.value.resource.type.contentHTML = "";
+    toggleTabBar(true)
+  } else {
+    ArticlePresented.value = 'Presented';
+    presentedArticle.value = args.data;
+    toggleNavigationBar(false)
+    toggleTabBar(false)
+  }
 }
 
 module.exports = {
-	articles: articles,
-	videos: videos,
-	toggleNavigationBar: toggleNavigationBar,
-	ArticlePresented: ArticlePresented,
-	TabBarIsEnabled: TabBarIsEnabled,
-	presentedArticle: presentedArticle,
+  articles: articles,
+  videos: videos,
+  toggleNavigationBar: toggleNavigationBar,
+  ArticlePresented: ArticlePresented,
+  TabBarIsEnabled: TabBarIsEnabled,
+  presentedArticle: presentedArticle,
   ArticlePageSpinEnabled: ArticlePageSpinEnabled,
-	VideoPageSpinEnabled: VideoPageSpinEnabled,
-	NavigationBarIsEnabled: NavigationBarIsEnabled,
-	toggleArticlePresented: toggleArticlePresented,
-	title : title,
+  VideoPageSpinEnabled: VideoPageSpinEnabled,
+  NavigationBarIsEnabled: NavigationBarIsEnabled,
+  toggleArticlePresented: toggleArticlePresented,
+  title : title,
 };

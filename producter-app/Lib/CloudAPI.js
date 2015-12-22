@@ -8,40 +8,40 @@ var ckAPIToken= "84df66d97de04cd3ab8fb24d45150d7456ee65d6322c98b67d09985d3c0d9a5
 // Fetch Article data
 
 var articleRequest = {
-	query: {
-		recordType: "article",
-		filterBy: [{
-				comparator: "EQUALS",
-				fieldName: "type",
-				fieldValue:{
-						value: "article"
-				},
+  query: {
+    recordType: "article",
+    filterBy: [{
+        comparator: "EQUALS",
+        fieldName: "type",
+        fieldValue:{
+            value: "article"
+        },
         sortBy: [{
             fieldName: "article_id",
             ascending: false
         }]
-		}]
-	}
+    }]
+  }
 }
 
 var articleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
 
 
 var videoArticleRequest = {
-	query: {
-		recordType: "article",
-		filterBy: [{
-				comparator: "EQUALS",
-				fieldName: "type",
-				fieldValue:{
-						value: "video"
-				},
+  query: {
+    recordType: "article",
+    filterBy: [{
+        comparator: "EQUALS",
+        fieldName: "type",
+        fieldValue:{
+            value: "video"
+        },
         sortBy: [{
             fieldName: "article_id",
             ascending: false
         }]
-		}]
-	}
+    }]
+  }
 }
 
 var videoArticleQuery = ServerPath+CloudIdentifier+"/"+Enviroment+"/"+DataBase+"/"+DataMethod+"?ckAPIToken="+ckAPIToken
