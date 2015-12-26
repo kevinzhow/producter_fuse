@@ -14,7 +14,6 @@ public class FuseStoreKit : NativeModule
   StoreKit storeKit = new StoreKit();
 
   public FuseStoreKit() {
-    // SKPaymentQueue._defaultQueue.addTransactionObserver(this);
     AddMember(new NativeFunction("makeSubscribe", (NativeCallback)MakeSubscribe));
     AddMember(new NativeFunction("makeRestore", (NativeCallback)MakeRestore));
   }
@@ -64,6 +63,8 @@ public class FuseStoreKit : NativeModule
 }
 
 extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver {
+
+    Storage storage = new Storage();
 
     public StoreKit() {
       debug_log("StoreKit Created");
@@ -124,12 +125,14 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
 
     public void paymentQueueRestoreCompletedTransactionsFinished (SKPaymentQueue queue) {
           // Restore succeeded
+      storage.updateSubscribe(true);
       debug_log(" ** RESTORE PaymentQueueRestoreCompletedTransactionsFinished");
     }
 
     public void paymentQueueRestoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)
     {
       // Restore failed somewhere...
+      storage.updateSubscribe(false);
       debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError");
     }
 }
