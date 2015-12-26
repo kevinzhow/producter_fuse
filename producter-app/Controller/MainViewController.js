@@ -1,11 +1,14 @@
 var _ = require('underscore');
 var Moment = require('Moment');
+var FuseStore = require('FuseStore');
 var CloudAPI = require('CloudAPI');
 var storage = require('FuseJS/Storage');
 var Observable = require('FuseJS/Observable');
 var videoHTMLTemplate = require("videoHTMLTemplate");
 var articleHTMLTemplate = require("articleHTMLTemplate");
 
+
+FuseStore.makeSubscribe();
 // Read Templates
 var videoHTMLTemplateString = videoHTMLTemplate.readSync();
 var articleHTMLTemplateString = articleHTMLTemplate.readSync();

@@ -9,6 +9,7 @@
   <JavaScript File="assets/js/moment.min.js" ux:Global="Moment"/>
   <TextFile File="videoHTMLTemplate.html" ux:Global="videoHTMLTemplate" />
   <TextFile File="articleHTMLTemplate.html" ux:Global="articleHTMLTemplate" />
+  <FuseStoreKit ux:Global="FuseStore"/>
 
   <Panel>
 
