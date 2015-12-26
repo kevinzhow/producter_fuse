@@ -155,6 +155,7 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
 
       int count = (int)transactions.count();
       debug_log(count);
+      var today = new NSDate();
 
       for (int i = 0; i < count; i++) {
         SKPaymentTransaction transaction =  new SKPaymentTransaction(transactions.objectAtIndex(i));
@@ -162,15 +163,33 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
         debug_log(transaction.transactionState());
 
         var state = transaction.transactionState();
+        var date = transaction.transactionDate();
+
         if (state == 1 || state == 3 ) {
           debug_log("Payment Successed");
-          storage.updateSubscribe(true);
+          debug_log(date);
+          var days = timeCompare(date,new NSDate());
+          debug_log(days);
+          if (  days >= 30 ) {
+            storage.updateSubscribe(true);
+          } else {
+            storage.updateSubscribe(false);
+          }
+          defaultQueue.finishTransaction(transaction);
         } else if (state == 2 ) {
           debug_log("Payment failed");
           storage.updateSubscribe(false);
+          defaultQueue.finishTransaction(transaction);
         }
         debug_log(transaction.error());
       }
+    }
+
+    public double timeCompare(NSDate fromDate, NSDate toDate) {
+      var lastDiff = fromDate.timeIntervalSinceNow();
+      var todaysDiff = toDate.timeIntervalSinceNow();
+      var diff = todaysDiff - lastDiff;
+      return diff/2592000;
     }
 
     public void makeRestore(){
