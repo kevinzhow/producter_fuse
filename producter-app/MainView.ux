@@ -15,9 +15,14 @@
 
     <HierarchicalNavigation ux:Name="NavigationController" ReuseExistingNode="false" Active="mainPage" />
     <Style>
-        <Page>
+        <Page ux:Name="page">
             <EnteringAnimation>
-                <Move X="1" RelativeTo="ParentSize" Duration="0.3"/>
+                <Move RelativeTo="ParentSize">
+                  <Keyframe X=".5" Time="0.5"/>
+                  <Keyframe X="1" Time="1"/>
+                </Move>
+                <Scale Factor=".5" Duration="1"/>
+                <Change page.Opacity="0" Duration="2.5"/>
             </EnteringAnimation>
             <ExitingAnimation>
                 <Move X="-1" RelativeTo="ParentSize" Duration="0.3"/>
@@ -114,6 +119,9 @@
                       <Clicked Handler="{toggleArticlePresented}">
                         <NavigateTo Target="articleDetailPage"/>
                       </Clicked>
+                      <WhilePressed>
+                        <Scale Factor="0.98" Duration="0.1"/>
+                      </WhilePressed>
                     </StackPanel>
                   </Panel>
                 </Each>

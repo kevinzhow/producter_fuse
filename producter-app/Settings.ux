@@ -17,7 +17,7 @@
 
     <Text Font="Bold" FontSize="23" Value="Subscription" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
     <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
-      如果你喜欢 Producter 的内容，欢迎订阅我的创作 18 元 / 月.
+      如果你喜欢 Producter 的内容，欢迎通过订阅来支持我的创作，并可以查看 Pro 文章以及视频 （18 元 / 月）
     </Text>
 
     <Grid Columns="auto,auto">

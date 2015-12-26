@@ -1,23 +1,8 @@
 <Panel ux:Name="ArticleDetailPage" Height="100%" Width="100%" Background="#fff" Alignment="Top">
   <NativeViewHost>
-    <WebView ux:Name="WebContainer" Height="100%" Opacity="0" Width="100%" Source="{presentedArticleHTML}" Alignment="Top" Margin="0, 0, 0, 45" >
-      <PageBeginLoading>
-        <Set stateGroup.Active="Loading"/>
-      </PageBeginLoading>
-      <PageLoaded>
-        <Set stateGroup.Active="Loaded"/>
-      </PageLoaded>
+    <WebView Height="100%" ux:Name="WebContainer" Width="100%" Source="{presentedArticleHTML}" Alignment="Top" Margin="0, 0, 0, 45" >
     </WebView>
   </NativeViewHost>
-
-  <StateGroup ux:Name="stateGroup">
-    <State ux:Name="Loading">
-        <Set WebContainer.Opacity="0"/>
-    </State>
-    <State ux:Name="Loaded">
-        <Change WebContainer.Opacity="1" Duration="0.5"/>
-    </State>
-  </StateGroup>
 
   <Rectangle Height="45" Alignment="BottomLeft" Width="80" Background="#fff">
     <Text TextWrapping="Wrap" Font="Bold" FontSize="15" Value="Back" Alignment="Center" TextColor="#000">
