@@ -5,6 +5,7 @@
       "ShowStatusbar": false
   },
   "Packages": [
+        "Fuse.PushNotifications",
         "Fuse.Animations",
         "Fuse.BasicTheme",
         "Fuse.Themes",

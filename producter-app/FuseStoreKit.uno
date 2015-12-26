@@ -5,6 +5,7 @@ using Fuse;
 using Fuse.Scripting;
 using Fuse.Reactive;
 using global::iOS.StoreKit;
+using global::iOS.CloudKit;
 using global::iOS.Foundation;
 
 public class FuseStoreKit : NativeModule
@@ -16,12 +17,16 @@ public class FuseStoreKit : NativeModule
   extern(iOS)
   Storage storage = new Storage();
 
+  extern(iOS)
+  CloudKit cloudKit = new CloudKit();
+
   [UXConstructor]
   public FuseStoreKit() {
     AddMember(new NativeFunction("makeSubscribe", (NativeCallback)MakeSubscribe));
     AddMember(new NativeFunction("makeRestore", (NativeCallback)MakeRestore));
     AddMember(new NativeFunction("checkSubscribe", (NativeCallback)CheckSubscribe));
     AddMember(new NativeFunction("updateSubscribe", (NativeCallback)UpdateSubscribe));
+    AddMember(new NativeFunction("makeNotificationSubscribe", (NativeCallback)MakeNotificationSubscribe));
   }
 
   object CheckSubscribe(Context c, object[] args)
@@ -47,6 +52,13 @@ public class FuseStoreKit : NativeModule
     }
     return null;
    }
+
+   object MakeNotificationSubscribe(Context c, object[] args) {
+     if defined (iOS) {
+       cloudKit.NotificationSubscribe();
+     }
+     return null;
+    }
 
    object MakeRestore(Context c, object[] args) {
      if defined (iOS) {
@@ -220,5 +232,40 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
       debug_log(error);
       debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError");
       storage.updateSubscribe(false);
+    }
+}
+
+extern(iOS)
+public class CloudKit {
+    CKContainer defaultContainer = new CKContainer(CKContainer._defaultContainer());
+
+    public CloudKit() {
+      debug_log("CloudKit Created");
+      // CKDatabase privateDB = defaultContainer.privateCloudDatabase();
+    }
+
+    // public void fetchUser() {
+    //   var predicate = new NSPredicate(NSPredicate._predicateWithValue(true));
+    //   var query = new CKQuery().initWithRecordTypePredicate("User", predicate);
+    //
+    //   privateDB.performQuery(query, null, (NSArray results, NSError error) => {
+    //
+    //   });
+    // }
+
+    public void NotificationSubscribe() {
+      var predicate = new NSPredicate(NSPredicate._predicateWithValue(true));
+      CKSubscription subscription = new CKSubscription();
+
+      subscription.initWithRecordTypePredicateOptions("Article", predicate, CKSubscriptionOptions.CKSubscriptionOptionsFiresOnRecordCreation);
+
+      CKNotificationInfo notificationInfo = new CKNotificationInfo();
+      notificationInfo.setAlertLocalizationKey("Producter 有新的文章更新啦");
+      notificationInfo.setShouldBadge(true);
+
+      subscription.setNotificationInfo(notificationInfo);
+
+      CKDatabase publicDatabase = defaultContainer.publicCloudDatabase();
+
     }
 }
