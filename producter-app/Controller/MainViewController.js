@@ -1,15 +1,14 @@
+var _ = require('underscore');
+var Moment = require('Moment');
+var CloudAPI = require('CloudAPI');
+var storage = require('FuseJS/Storage');
 var Observable = require('FuseJS/Observable');
 var videoHTMLTemplate = require("videoHTMLTemplate");
 var articleHTMLTemplate = require("articleHTMLTemplate");
-var CloudAPI = require('CloudAPI');
-var _ = require('underscore');
 
-var storage = require('FuseJS/Storage');
-var Moment = require('Moment');
-
+// Read Templates
 var videoHTMLTemplateString = videoHTMLTemplate.readSync();
 var articleHTMLTemplateString = articleHTMLTemplate.readSync();
-
 
 // Articles
 articles = Observable();
@@ -164,16 +163,15 @@ function toggleArticlePresented(args) {
     ArticlePresented.value = 'Default';
     console.log("Article " + ArticlePresented.value);
     if 	(presentedArticle.value.type == "video") {
-      console.log("Add NavigationBar Back");
       toggleNavigationBar(true)
     }
+    // Adjust Bars
     toggleTabBar(true)
   } else {
     ArticlePresented.value = 'Presented';
     presentedArticle.value = args.data;
-
     if 	(args.data.type == "video") {
-
+      // Prepare Data For Video
       ArticleTitle.value = args.data.title;
       ArticlePoster.value = args.data.poster;
       ArticleDesc.value = args.data.short_desc;
@@ -186,22 +184,16 @@ function toggleArticlePresented(args) {
     } else {
       presentedArticleHTML.value = args.data.contentHTML;
     }
+    // Adjust Bars
     toggleNavigationBar(false)
     toggleTabBar(false)
   }
 }
 
 module.exports = {
+  title : title,
   articles: articles,
   videos: videos,
-  toggleNavigationBar: toggleNavigationBar,
-  ArticlePresented: ArticlePresented,
-  TabBarIsEnabled: TabBarIsEnabled,
-  presentedArticle: presentedArticle,
-  ArticlePageSpinEnabled: ArticlePageSpinEnabled,
-  VideoPageSpinEnabled: VideoPageSpinEnabled,
-  NavigationBarIsEnabled: NavigationBarIsEnabled,
-  presentedArticleHTML: presentedArticleHTML,
   ArticleTitle: ArticleTitle,
   ArticlePoster: ArticlePoster,
   ArticleDesc: ArticleDesc,
@@ -210,6 +202,13 @@ module.exports = {
   ArticleYouku: ArticleYouku,
   ArticleYoutube: ArticleYoutube,
   ArticleBilibili: ArticleBilibili,
+  ArticlePresented: ArticlePresented,
+  TabBarIsEnabled: TabBarIsEnabled,
+  presentedArticle: presentedArticle,
+  toggleNavigationBar: toggleNavigationBar,
+  ArticlePageSpinEnabled: ArticlePageSpinEnabled,
+  VideoPageSpinEnabled: VideoPageSpinEnabled,
+  NavigationBarIsEnabled: NavigationBarIsEnabled,
+  presentedArticleHTML: presentedArticleHTML,
   toggleArticlePresented: toggleArticlePresented,
-  title : title,
 };
