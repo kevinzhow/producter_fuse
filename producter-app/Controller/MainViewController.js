@@ -12,11 +12,15 @@ var articleHTMLTemplate = require("articleHTMLTemplate");
 var videoHTMLTemplateString = videoHTMLTemplate.readSync();
 var articleHTMLTemplateString = articleHTMLTemplate.readSync();
 
-var subscribe = FuseStore.checkSubscribe();
-console.log("Subscribe "+ subscribe);
+var subscribe = function() {
+   return FuseStore.checkSubscribe();
+};
+
+console.log("Subscribe "+ subscribe());
 // Articles
 articles = Observable();
 ArticlePageSpinEnabled = Observable(false);
+ProCover = Observable(false);
 
 // Create bunch of triky binding
 ArticleTitle = Observable("");
@@ -49,6 +53,7 @@ fetch(CloudAPI.articleQuery, {
    var record_fields = record.fields;
    var article = {
       article_id: record_fields.article_id.value,
+      pro: record_fields.pro.value,
       title:record_fields.title.value,
       author: record_fields.author.value,
       short_desc: record_fields.description.value,
@@ -99,6 +104,7 @@ fetch(CloudAPI.videoArticleQuery, {
       var record_fields = record.fields;
       var video = {
          article_id: record_fields.article_id.value,
+         pro: record_fields.pro.value,
          title:record_fields.title.value,
          author: record_fields.author.value,
          short_desc: record_fields.description.value,
@@ -172,8 +178,19 @@ function toggleArticlePresented(args) {
     // Adjust Bars
     toggleTabBar(true)
   } else {
+
+    var pro = args.data.pro;
+    console.log(pro);
+
+    if (pro == "yes" && !subscribe()) { // Pro access control
+      ProCover.value = true;
+    } else {
+      ProCover.value = false;
+    }
+
     ArticlePresented.value = 'Presented';
     presentedArticle.value = args.data;
+
     if 	(args.data.type == "video") {
       // Prepare Data For Video
       ArticleTitle.value = args.data.title;
@@ -204,6 +221,7 @@ function makeRestore() {
 
 module.exports = {
   title : title,
+  ProCover: ProCover,
   articles: articles,
   videos: videos,
   makeSubscribe: makeSubscribe,
