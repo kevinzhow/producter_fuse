@@ -2,6 +2,7 @@
   <iOS.StatusBarConfig IsVisible="false"/>
   <JavaScript File="Controller/MainViewController.js" />
   <JavaScript File="Lib/CloudAPI.js" ux:Global="CloudAPI" />
+  <JavaScript File="Lib/underscore-min.js" ux:Global="underscore" />
   <Font File="assets/fonts/Lato-Bold.ttf" ux:Global="Bold" />
   <Font File="assets/fonts/Lato-Light.ttf" ux:Global="Light" />
   <Font File="assets/fonts/Lato-Regular.ttf" ux:Global="Regular" />
