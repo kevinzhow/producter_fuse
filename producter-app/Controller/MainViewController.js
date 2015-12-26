@@ -42,7 +42,7 @@ fetch(CloudAPI.articleQuery, {
   ArticlePageSpinEnabled.value = false;
   var records = responseObject.records;
 
-  _.each(records, function(record) {
+  var tempArticles = _.map(records, function(record) {
    var record_fields = record.fields;
    var article = {
       article_id: record_fields.article_id.value,
@@ -58,7 +58,12 @@ fetch(CloudAPI.articleQuery, {
     htmlContent = htmlContent.replace(/#{title}/, article.title)
     htmlContent = htmlContent.replace(/#{author}/, article.subtitle)
     article.contentHTML = htmlContent
-    articles.add(article);
+    return article;
+  })
+
+  tempArticles = _.sortBy(tempArticles, "article_id").reverse()
+  _.each(tempArticles, function(record) {
+   articles.add(record)
   })
 
 }).catch(function(err) {
@@ -85,10 +90,9 @@ fetch(CloudAPI.videoArticleQuery, {
 .then(function(responseObject) {
     VideoPageSpinEnabled.value = false
     videos.clear()
-    var tempVideos = []
     var records = responseObject.records
 
-    _.each(records, function(record) {
+    var tempVideos = _.map(records, function(record) {
       var record_fields = record.fields;
       var video = {
          article_id: record_fields.article_id.value,
@@ -104,7 +108,7 @@ fetch(CloudAPI.videoArticleQuery, {
          githubURL: record_fields.github_url.value,
          created_at: Moment(record.created.timestamp).fromNow()
        }
-       tempVideos.push(video);
+       return video
     })
 
    tempVideos = _.sortBy(tempVideos, "article_id").reverse()
