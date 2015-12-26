@@ -113,6 +113,7 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
       debug_log("StoreKit Created");
       var subscribeStatus = storage.checkSubscribe();
       debug_log(subscribeStatus);
+
     }
 
     public void makeSubscribe() {
@@ -156,9 +157,11 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
         SKPaymentTransaction transaction =  new SKPaymentTransaction(transactions.objectAtIndex(i));
         debug_log(transaction.transactionState());
         var state = transaction.transactionState();
-        if (state == 1) {
+        if (state == 1 || state == 3 ) {
+          debug_log("Payment Successed");
           storage.updateSubscribe(true);
-        } else {
+        } else if (state == 2 ) {
+          debug_log("Payment failed");
           storage.updateSubscribe(false);
         }
         debug_log(transaction.error());
@@ -167,8 +170,10 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
 
     public void makeRestore(){
       debug_log(" ** Restore");
+
       // theObserver will be notified of when the restored transactions start arriving <- AppStore
       var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+      defaultQueue.addTransactionObserver(this);
       defaultQueue.restoreCompletedTransactions();
     }
 
@@ -179,13 +184,14 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
     }
 
     public void paymentQueueRemovedTransactions(SKPaymentQueue queue, NSArray transactions) {
-
+      debug_log(" ** REMOVED paymentQueueRemovedTransactions");
     }
 
     public void paymentQueueRestoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)
     {
       // Restore failed somewhere...
-      storage.updateSubscribe(false);
+      debug_log(error);
       debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError");
+      storage.updateSubscribe(false);
     }
 }

@@ -12,6 +12,8 @@ var articleHTMLTemplate = require("articleHTMLTemplate");
 var videoHTMLTemplateString = videoHTMLTemplate.readSync();
 var articleHTMLTemplateString = articleHTMLTemplate.readSync();
 
+var subscribe = FuseStore.checkSubscribe();
+console.log("Subscribe "+ subscribe);
 // Articles
 articles = Observable();
 ArticlePageSpinEnabled = Observable(false);
