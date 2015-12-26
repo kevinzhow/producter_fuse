@@ -33,7 +33,7 @@ public class FuseStoreKit : NativeModule
   //   }
 
    public void Subscribe() {
-     if (true) {
+     if (SKPaymentQueue._canMakePayments()) {
        debug_log("Can Make Payment");
        storeKit.makeSubscribe();
      } else {
@@ -46,18 +46,44 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
 
     public StoreKit() {
        debug_log("StoreKit Created");
-       SKPaymentQueue._defaultQueue.addTransactionObserver(this);
+       var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+       //Seprate to make addTransactionObserver work
+       defaultQueue.addTransactionObserver(this);
     }
 
     public void makeSubscribe() {
        debug_log("App Store Kit Can Make Payment");
+
+       SKPayment payment = new SKPayment(SKPayment._paymentWithProductIdentifier("producter_month_subscribe"));
+       var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+       defaultQueue.addPayment(payment);
+
+      //  NSString begin = new NSString();
+      //  begin.initWithString("producter_month_subscribe");
+       //
+      //  debug_log(begin);
+       //
+      //  NSArray productArrary = new NSArray();
+      //  productArrary.init();
+      //  productArrary = productArrary.arrayByAddingObject(begin);
+       //
+      //  NSSet productSet = new NSSet();
+      //  productSet.initWithArray(productArrary);
+       //
+      //  debug_log(productSet);
+       //
+      //  SKProductsRequest request = new SKProductsRequest();
+      //  request.initWithProductIdentifiers(productSet);
+       //
+      //  request.setDelegate(this);
+      //  request.start();
     }
 
-    public void productsRequestDidReceiveResponse(SKProductsRequest request,SKProductsResponse response) {
-
+    public void productsRequestDidReceiveResponse(SKProductsRequest request, SKProductsResponse response) {
+       debug_log("Recieve Product Response");
     }
 
     public void paymentQueueUpdatedTransactions(SKPaymentQueue queue, NSArray transactions) {
-
+       debug_log("Payment queue update");
     }
 }
