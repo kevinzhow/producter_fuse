@@ -1,5 +1,6 @@
 <App Background="#fff" Theme="Basic">
   <iOS.StatusBarConfig IsVisible="false"/>
+  <FuseStoreKit ux:Global="FuseStore"/>
   <JavaScript File="Controller/MainViewController.js" />
   <JavaScript File="Lib/CloudAPI.js" ux:Global="CloudAPI" />
   <JavaScript File="Lib/underscore-min.js" ux:Global="underscore" />
@@ -9,10 +10,6 @@
   <JavaScript File="assets/js/moment.min.js" ux:Global="Moment"/>
   <TextFile File="videoHTMLTemplate.html" ux:Global="videoHTMLTemplate" />
   <TextFile File="articleHTMLTemplate.html" ux:Global="articleHTMLTemplate" />
-  <FuseStoreKit ux:Global="FuseStore"/>
-  <FuseCloudKit ux:Global="FuseCloud"/>
-  <FuseStorageKit ux:Global="FuseStorage"/>
-
   <Panel>
 
     <HierarchicalNavigation ux:Name="NavigationController" ReuseExistingNode="false" Active="mainPage" />

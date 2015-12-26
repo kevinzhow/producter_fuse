@@ -1,9 +1,9 @@
 var _ = require('underscore');
 var Moment = require('Moment');
+
 var FuseStore = require('FuseStore');
-var FuseStorageKit = require('FuseStorage');
+
 var CloudAPI = require('CloudAPI');
-var storage = require('FuseJS/Storage');
 var Observable = require('FuseJS/Observable');
 var videoHTMLTemplate = require("videoHTMLTemplate");
 var articleHTMLTemplate = require("articleHTMLTemplate");

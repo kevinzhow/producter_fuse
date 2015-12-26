@@ -13,9 +13,32 @@ public class FuseStoreKit : NativeModule
   extern(iOS)
   StoreKit storeKit = new StoreKit();
 
+  extern(iOS)
+  Storage storage = new Storage();
+
+  [UXConstructor]
   public FuseStoreKit() {
     AddMember(new NativeFunction("makeSubscribe", (NativeCallback)MakeSubscribe));
     AddMember(new NativeFunction("makeRestore", (NativeCallback)MakeRestore));
+    AddMember(new NativeFunction("checkSubscribe", (NativeCallback)CheckSubscribe));
+    AddMember(new NativeFunction("updateSubscribe", (NativeCallback)UpdateSubscribe));
+  }
+
+  object CheckSubscribe(Context c, object[] args)
+  {
+    if defined (iOS) {
+      return storage.checkSubscribe();
+    }
+    return null;
+  }
+
+  object UpdateSubscribe(Context c, object[] args)
+  {
+    if defined (iOS) {
+      debug_log(args);
+      storage.updateSubscribe(true);
+    }
+    return null;
   }
 
   object MakeSubscribe(Context c, object[] args) {
@@ -62,15 +85,34 @@ public class FuseStoreKit : NativeModule
    }
 }
 
-extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver {
+extern(iOS)
+public class Storage {
 
-    Storage storage = new Storage();
+    NSUserDefaults userDefaults = new NSUserDefaults(NSUserDefaults._standardUserDefaults());
+
+    public Storage() {
+      debug_log("Storage Created");
+    }
+
+    public bool checkSubscribe() {
+      return userDefaults.boolForKey("Subscribe");
+    }
+
+    public void updateSubscribe(bool subscribe) {
+      userDefaults.setBoolForKey(subscribe, "Subscribe");
+    }
+}
+
+extern(iOS)
+public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver {
+
+    Storage storage;
 
     public StoreKit() {
+      storage = new Storage();
       debug_log("StoreKit Created");
-      var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
-      //Seprate to make addTransactionObserver work
-      defaultQueue.addTransactionObserver(this);
+      var subscribeStatus = storage.checkSubscribe();
+      debug_log(subscribeStatus);
     }
 
     public void makeSubscribe() {
@@ -78,6 +120,7 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
 
       SKPayment payment = new SKPayment(SKPayment._paymentWithProductIdentifier("producter_month_subscribe"));
       var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+      defaultQueue.addTransactionObserver(this);
       defaultQueue.addPayment(payment);
 
       //  NSString begin = new NSString();
@@ -115,6 +158,8 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
         var state = transaction.transactionState();
         if (state == 1) {
           storage.updateSubscribe(true);
+        } else {
+          storage.updateSubscribe(false);
         }
         debug_log(transaction.error());
       }
