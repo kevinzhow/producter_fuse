@@ -112,6 +112,10 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
       for (int i = 0; i < count; i++) {
         SKPaymentTransaction transaction =  new SKPaymentTransaction(transactions.objectAtIndex(i));
         debug_log(transaction.transactionState());
+        var state = transaction.transactionState();
+        if (state == 1) {
+          storage.updateSubscribe(true);
+        }
         debug_log(transaction.error());
       }
     }
@@ -127,6 +131,10 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
           // Restore succeeded
       storage.updateSubscribe(true);
       debug_log(" ** RESTORE PaymentQueueRestoreCompletedTransactionsFinished");
+    }
+
+    public void paymentQueueRemovedTransactions(SKPaymentQueue queue, NSArray transactions) {
+
     }
 
     public void paymentQueueRestoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)

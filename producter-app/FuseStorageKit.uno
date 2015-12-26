@@ -6,12 +6,12 @@ using Fuse.Scripting;
 using Fuse.Reactive;
 using global::iOS.Foundation;
 
-public class FuseStorage : NativeModule
+public class FuseStorageKit : NativeModule
 {
   extern(iOS)
   Storage storage = new Storage();
 
-  public FuseStorage() {
+  public FuseStorageKit() {
     AddMember(new NativeFunction("checkSubscribe", (NativeCallback)CheckSubscribe));
     AddMember(new NativeFunction("updateSubscribe", (NativeCallback)UpdateSubscribe));
   }
