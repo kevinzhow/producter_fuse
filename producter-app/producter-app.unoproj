@@ -25,6 +25,7 @@
         "Uno.Geometry",
         "Fuse.Scripting",
         "Experimental.iOS",
+        "ObjC",
         "Android"
   ],
   "Includes": [

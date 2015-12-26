@@ -13,6 +13,8 @@ var articleHTMLTemplateString = articleHTMLTemplate.readSync();
 // Articles
 articles = Observable();
 ArticlePageSpinEnabled = Observable(false);
+
+// Create bunch of triky binding
 ArticleTitle = Observable("");
 ArticlePoster = Observable("");
 ArticleDesc = Observable("");
