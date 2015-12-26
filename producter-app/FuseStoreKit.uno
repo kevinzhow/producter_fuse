@@ -111,20 +111,31 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
       for (int i = 0; i < count; i++) {
         SKPaymentTransaction transaction =  new SKPaymentTransaction(transactions.objectAtIndex(i));
         debug_log(transaction.transactionState());
-        debug_log(transaction.error()); 
+        debug_log(transaction.error());
       }
     }
 
     public void makeRestore(){
-      debug_log (" ** Restore");
+      debug_log(" ** Restore");
       // theObserver will be notified of when the restored transactions start arriving <- AppStore
       var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
       defaultQueue.restoreCompletedTransactions();
     }
 
+    public void paymentQueueRestoreCompletedTransactionsFinished (SKPaymentQueue queue) {
+          // Restore succeeded
+      debug_log(" ** RESTORE PaymentQueueRestoreCompletedTransactionsFinished");
+    }
+
+    public void paymentQueueRestoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)
+    {
+      // Restore failed somewhere...
+      debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError");
+    }
+
     public void restoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)
     {
       // Restore failed somewhere...
-      debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError " + error.LocalizedDescription);
+      debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError");
     }
 }
