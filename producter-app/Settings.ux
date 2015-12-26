@@ -1,78 +1,80 @@
 <Panel ux:Name="Settings" Margin="0,0,0,25" Background="#fff">
 <ScrollView Padding="0,0,0,60">
-	<StackPanel Width="85%" >
-		<Text Font="Bold" FontSize="23" Value="Book" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
-		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
-			Producter is a book about Design, iOS and Marketing, it talks about how to make product from 0 to 1.
-		</Text>
-		<Image ux:Name="VideoPoster" File="assets/images/cover.jpg" Width="50%" StretchMode="UniformToFill" Margin="0,40,0,40">
-			<DropShadow Angle="90" Distance="12" Size="20" Spread="0.1" Color="#ddd"/>
-			<WhilePressed>
-				<Scale Factor="0.98" Duration="0.1"/>
-			</WhilePressed>
-			<Clicked>
+  <StackPanel Width="85%" >
+    <Text Font="Bold" FontSize="23" Value="Book" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
+      Producter is a book about Design, iOS and Marketing, it talks about how to make product from 0 to 1.
+    </Text>
+    <Image ux:Name="VideoPoster" File="assets/images/cover.jpg" Width="50%" StretchMode="UniformToFill" Margin="0,40,0,40">
+      <DropShadow Angle="90" Distance="12" Size="20" Spread="0.1" Color="#ddd"/>
+      <WhilePressed>
+        <Scale Factor="0.98" Duration="0.1"/>
+      </WhilePressed>
+      <Clicked>
         <LaunchUri Uri="http://producter.io"/>
       </Clicked>
-		</Image>
+    </Image>
 
-		<Text Font="Bold" FontSize="23" Value="Subscription" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
-		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
-			If you like the content and want to support my work, please make a subscription.
-		</Text>
+    <Text Font="Bold" FontSize="23" Value="Subscription" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
+      If you like the content and want to support my work, please make a subscription.
+    </Text>
 
-		<Grid Columns="auto,auto">
-			<Rectangle Alignment="Left" Margin="0,20,0,0">
-				<Stroke Width="2" Brush="#eee"/>
-				<Text Font="Bold" FontSize="13" Value="Subscription" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-			</Rectangle>
-			<Rectangle Alignment="Left" Margin="20,20,0,0">
-				<Stroke Width="2" Brush="#eee"/>
-				<Text Font="Bold" FontSize="13" Value="Restore" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
-			</Rectangle>
-		</Grid>
+    <Grid Columns="auto,auto">
+      <Rectangle Alignment="Left" Margin="0,20,0,0">
+        <Stroke Width="2" Brush="#000"/>
+        <Text Font="Bold" FontSize="13" Value="Subscription" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+        <Clicked Handler="{makeSubscribe}">
+        </Clicked>
+      </Rectangle>
+      <Rectangle Alignment="Left" Margin="20,20,0,0">
+        <Stroke Width="2" Brush="#eee"/>
+        <Text Font="Bold" FontSize="13" Value="Restore" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+      </Rectangle>
+    </Grid>
 
 
 
-		<Text Font="Bold" FontSize="23" Value="Feedback" Alignment="Left" TextColor="#000"  Margin="0, 40, 15, 0"/>
-		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
-			If you have any question, feel free to send me email!
-		</Text>
-		<Rectangle Alignment="Left" Margin="0,20,0,0">
-			<Stroke Width="2" Brush="#000"/>
-			<Text Font="Bold" FontSize="13" Value="Send Email" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+    <Text Font="Bold" FontSize="23" Value="Feedback" Alignment="Left" TextColor="#000"  Margin="0, 40, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
+      If you have any question, feel free to send me email!
+    </Text>
+    <Rectangle Alignment="Left" Margin="0,20,0,0">
+      <Stroke Width="2" Brush="#000"/>
+      <Text Font="Bold" FontSize="13" Value="Send Email" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
       <Clicked>
         <LaunchEmail To="kevinchou.c@gmail.com" Subject="Producter Feedback" Message="Question..."/>
       </Clicked>
-			<WhilePressed>
-				<Scale Factor="0.95" Duration="0.1"/>
-			</WhilePressed>
-		</Rectangle>
+      <WhilePressed>
+        <Scale Factor="0.95" Duration="0.1"/>
+      </WhilePressed>
+    </Rectangle>
 
-		<Text Font="Bold" FontSize="23" Value="About" Alignment="Left" TextColor="#000"  Margin="0, 40, 15, 0"/>
-		<Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 10, 15, 0">
-			This app was made for Producter with Fuse. You can keep up with me in ways blow.
-		</Text>
-		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
-			Weibo http://weibo.com/kevinzhow
-			<Clicked>
+    <Text Font="Bold" FontSize="23" Value="About" Alignment="Left" TextColor="#000"  Margin="0, 40, 15, 0"/>
+    <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 10, 15, 0">
+      This app was made for Producter with Fuse. You can keep up with me in ways blow.
+    </Text>
+    <Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
+      Weibo http://weibo.com/kevinzhow
+      <Clicked>
         <LaunchUri Uri="http://weibo.com/kevinzhow"/>
       </Clicked>
-		</Text>
-		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
-			Github kevinzhow
-			<Clicked>
+    </Text>
+    <Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
+      Github kevinzhow
+      <Clicked>
         <LaunchUri Uri="https://github.com/kevinzhow"/>
       </Clicked>
-		</Text>
-		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
-			Blog http://blog.zhowkev.in
-			<Clicked>
+    </Text>
+    <Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
+      Blog http://blog.zhowkev.in
+      <Clicked>
         <LaunchUri Uri="http://blog.zhowkev.in"/>
       </Clicked>
-		</Text>
-		<Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
-			Version 1.0
-		</Text>
-	</StackPanel>
-	</ScrollView>
+    </Text>
+    <Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
+      Version 1.0
+    </Text>
+  </StackPanel>
+  </ScrollView>
 </Panel>

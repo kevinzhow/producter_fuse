@@ -193,6 +193,10 @@ function toggleArticlePresented(args) {
   }
 }
 
+function makeSubscribe() {
+  FuseStore.makeSubscribe();
+}
+
 module.exports = {
   title : title,
   articles: articles,
@@ -213,5 +217,6 @@ module.exports = {
   VideoPageSpinEnabled: VideoPageSpinEnabled,
   NavigationBarIsEnabled: NavigationBarIsEnabled,
   presentedArticleHTML: presentedArticleHTML,
+  makeSubscribe: makeSubscribe,
   toggleArticlePresented: toggleArticlePresented,
 };
