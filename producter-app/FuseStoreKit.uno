@@ -132,10 +132,4 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
       // Restore failed somewhere...
       debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError");
     }
-
-    public void restoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)
-    {
-      // Restore failed somewhere...
-      debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError");
-    }
 }
