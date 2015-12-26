@@ -108,13 +108,14 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
 
     Storage storage;
 
+    SKPaymentQueue defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+
     public StoreKit() {
       storage = new Storage();
       debug_log("StoreKit Created");
       var subscribeStatus = storage.checkSubscribe();
       debug_log(subscribeStatus);
 
-      var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
       defaultQueue.addTransactionObserver(this);
     }
 
@@ -122,7 +123,6 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
       debug_log("App Store Kit Can Make Payment");
 
       SKPayment payment = new SKPayment(SKPayment._paymentWithProductIdentifier("producter_month_subscribe"));
-      var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
       defaultQueue.addPayment(payment);
 
       //  NSString begin = new NSString();
@@ -177,7 +177,6 @@ public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver
       debug_log(" ** Restore");
 
       // theObserver will be notified of when the restored transactions start arriving <- AppStore
-      var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
       defaultQueue.restoreCompletedTransactions();
     }
 
