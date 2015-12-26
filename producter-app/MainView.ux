@@ -16,10 +16,10 @@
     <Style>
         <Page>
             <EnteringAnimation>
-                <Move X="1" RelativeTo="ParentSize" />
+                <Move X="1" RelativeTo="ParentSize" Duration="0.3"/>
             </EnteringAnimation>
             <ExitingAnimation>
-                <Move X="-1" RelativeTo="ParentSize" />
+                <Move X="-1" RelativeTo="ParentSize" Duration="0.3"/>
             </ExitingAnimation>
         </Page>
     </Style>
@@ -142,7 +142,7 @@
                   <Panel ux:Name="VideoArticle" Margin="0,10,0,25" Background="#fff">
                     <StackPanel Width="80%" >
                       <Rectangle>
-                      <Image ux:Name="VideoPoster" Url="{poster}" Width="100%" Height="200" >
+                      <Image ux:Name="VideoPoster" Url="{poster}" Width="100%" Height="150" StretchMode="UniformToFill">
                         <DropShadow Angle="90" Distance="12" Size="25" Spread="0.1" Color="#ddd" />
                         <WhilePressed>
                           <Scale Factor="0.98" Duration="0.1"/>

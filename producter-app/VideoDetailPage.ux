@@ -1,6 +1,6 @@
 <Panel ux:Name="VideoDetailPage" Height="100%" Width="100%" Background="#fff" Alignment="Top">
-  <StackPanel Width="80%" Alignment="Top">
-    <Image ux:Name="VideoPoster" Url="{ArticlePoster}" Width="100%" Height="200" >
+  <StackPanel Width="80%" Alignment="Top" Margin="0,40,0,0">
+    <Image ux:Name="VideoPoster" Url="{ArticlePoster}" Width="100%" Height="150" StretchMode="UniformToFill">
       <DropShadow Angle="90" Distance="12" Size="25" Spread="0.1" Color="#ddd" />
       <WhilePressed>
         <Scale Factor="0.98" Duration="0.1"/>
