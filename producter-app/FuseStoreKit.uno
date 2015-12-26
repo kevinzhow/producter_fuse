@@ -16,16 +16,22 @@ public class FuseStoreKit : NativeModule
   public FuseStoreKit() {
     // SKPaymentQueue._defaultQueue.addTransactionObserver(this);
     AddMember(new NativeFunction("makeSubscribe", (NativeCallback)MakeSubscribe));
+    AddMember(new NativeFunction("makeRestore", (NativeCallback)MakeRestore));
   }
 
-  object MakeSubscribe(Context c, object[] args)
-   {
-       if defined (iOS)
-       {
-         Subscribe();
-       }
-       return null;
+  object MakeSubscribe(Context c, object[] args) {
+    if defined (iOS) {
+      Subscribe();
+    }
+    return null;
    }
+
+   object MakeRestore(Context c, object[] args) {
+     if defined (iOS) {
+       Restore();
+     }
+     return null;
+    }
    //
   //  public bool CanMakePayments()
   //   {
@@ -38,9 +44,21 @@ public class FuseStoreKit : NativeModule
        if (SKPaymentQueue._canMakePayments()) {
          debug_log("Can Make Payment");
          storeKit.makeSubscribe();
+       } else {
+         debug_log("Can not make payment");
        }
-     } else {
-       debug_log("Can not make payment");
+     }
+   }
+
+   public void Restore() {
+     if defined(iOS) {
+       // Make sure platform code inside define or fuse porxy may not work
+       if (SKPaymentQueue._canMakePayments()) {
+         debug_log("Can Make Payment");
+         storeKit.makeRestore();
+       } else {
+         debug_log("Can not make payment");
+       }
      }
    }
 }
@@ -93,10 +111,15 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
       for (int i = 0; i < count; i++) {
         SKPaymentTransaction transaction =  new SKPaymentTransaction(transactions.objectAtIndex(i));
         debug_log(transaction.transactionState());
-        debug_log(transaction.error());
-
+        debug_log(transaction.error()); 
       }
+    }
 
+    public void makeRestore(){
+      debug_log (" ** Restore");
+      // theObserver will be notified of when the restored transactions start arriving <- AppStore
+      var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+      defaultQueue.restoreCompletedTransactions();
     }
 
     public void restoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)

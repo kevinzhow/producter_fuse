@@ -31,8 +31,13 @@
         </WhilePressed>
       </Rectangle>
       <Rectangle Alignment="Left" Margin="20,20,0,0">
-        <Stroke Width="2" Brush="#eee"/>
-        <Text Font="Bold" FontSize="13" Value="恢复" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+        <Stroke Width="2" Brush="#000"/>
+        <Text Font="Bold" FontSize="13" Value="恢复" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+        <Clicked Handler="{makeRestore}">
+        </Clicked>
+        <WhilePressed>
+          <Scale Factor="0.98" Duration="0.1"/>
+        </WhilePressed>
       </Rectangle>
     </Grid>
 

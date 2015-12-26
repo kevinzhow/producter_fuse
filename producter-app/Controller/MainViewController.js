@@ -195,10 +195,16 @@ function makeSubscribe() {
   FuseStore.makeSubscribe();
 }
 
+function makeRestore() {
+  FuseStore.makeRestore();
+}
+
 module.exports = {
   title : title,
   articles: articles,
   videos: videos,
+  makeSubscribe: makeSubscribe,
+  makeRestore: makeRestore,
   ArticleTitle: ArticleTitle,
   ArticlePoster: ArticlePoster,
   ArticleDesc: ArticleDesc,
@@ -215,6 +221,5 @@ module.exports = {
   VideoPageSpinEnabled: VideoPageSpinEnabled,
   NavigationBarIsEnabled: NavigationBarIsEnabled,
   presentedArticleHTML: presentedArticleHTML,
-  makeSubscribe: makeSubscribe,
   toggleArticlePresented: toggleArticlePresented,
 };
