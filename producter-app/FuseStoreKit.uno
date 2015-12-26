@@ -33,9 +33,12 @@ public class FuseStoreKit : NativeModule
   //   }
 
    public void Subscribe() {
-     if (SKPaymentQueue._canMakePayments()) {
-       debug_log("Can Make Payment");
-       storeKit.makeSubscribe();
+     if defined(iOS) {
+       // Make sure platform code inside define or fuse porxy may not work
+       if (SKPaymentQueue._canMakePayments()) {
+         debug_log("Can Make Payment");
+         storeKit.makeSubscribe();
+       }
      } else {
        debug_log("Can not make payment");
      }
@@ -45,18 +48,18 @@ public class FuseStoreKit : NativeModule
 extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransactionObserver {
 
     public StoreKit() {
-       debug_log("StoreKit Created");
-       var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
-       //Seprate to make addTransactionObserver work
-       defaultQueue.addTransactionObserver(this);
+      debug_log("StoreKit Created");
+      var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+      //Seprate to make addTransactionObserver work
+      defaultQueue.addTransactionObserver(this);
     }
 
     public void makeSubscribe() {
-       debug_log("App Store Kit Can Make Payment");
+      debug_log("App Store Kit Can Make Payment");
 
-       SKPayment payment = new SKPayment(SKPayment._paymentWithProductIdentifier("producter_month_subscribe"));
-       var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
-       defaultQueue.addPayment(payment);
+      SKPayment payment = new SKPayment(SKPayment._paymentWithProductIdentifier("producter_month_subscribe"));
+      var defaultQueue = new SKPaymentQueue(SKPaymentQueue._defaultQueue());
+      defaultQueue.addPayment(payment);
 
       //  NSString begin = new NSString();
       //  begin.initWithString("producter_month_subscribe");
@@ -80,10 +83,25 @@ extern(iOS) public class StoreKit: ISKProductsRequestDelegate, ISKPaymentTransac
     }
 
     public void productsRequestDidReceiveResponse(SKProductsRequest request, SKProductsResponse response) {
-       debug_log("Recieve Product Response");
+      debug_log("Recieve Product Response");
     }
 
     public void paymentQueueUpdatedTransactions(SKPaymentQueue queue, NSArray transactions) {
-       debug_log("Payment queue update");
+      debug_log("Payment queue update");
+
+      int count = (int)transactions.count();
+      for (int i = 0; i < count; i++) {
+        SKPaymentTransaction transaction =  new SKPaymentTransaction(transactions.objectAtIndex(i));
+        debug_log(transaction.transactionState());
+        debug_log(transaction.error());
+
+      }
+
+    }
+
+    public void restoreCompletedTransactionsFailedWithError (SKPaymentQueue queue, NSError error)
+    {
+      // Restore failed somewhere...
+      debug_log(" ** RESTORE RestoreCompletedTransactionsFailedWithError " + error.LocalizedDescription);
     }
 }

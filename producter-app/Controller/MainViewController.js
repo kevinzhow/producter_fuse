@@ -7,8 +7,6 @@ var Observable = require('FuseJS/Observable');
 var videoHTMLTemplate = require("videoHTMLTemplate");
 var articleHTMLTemplate = require("articleHTMLTemplate");
 
-
-FuseStore.makeSubscribe();
 // Read Templates
 var videoHTMLTemplateString = videoHTMLTemplate.readSync();
 var articleHTMLTemplateString = articleHTMLTemplate.readSync();

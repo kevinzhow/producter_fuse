@@ -3,7 +3,7 @@
   <StackPanel Width="85%" >
     <Text Font="Bold" FontSize="23" Value="Book" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
     <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
-      Producter is a book about Design, iOS and Marketing, it talks about how to make product from 0 to 1.
+      Producter 是一本关于设计，iOS 以及营销的书籍, 我将带你一起从 0 到 1 完成一款产品.
     </Text>
     <Image ux:Name="VideoPoster" File="assets/images/cover.jpg" Width="50%" StretchMode="UniformToFill" Margin="0,40,0,40">
       <DropShadow Angle="90" Distance="12" Size="20" Spread="0.1" Color="#ddd"/>
@@ -17,19 +17,22 @@
 
     <Text Font="Bold" FontSize="23" Value="Subscription" Alignment="Left" TextColor="#000"  Margin="0, 20, 15, 0"/>
     <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
-      If you like the content and want to support my work, please make a subscription.
+      如果你喜欢 Producter 的内容，欢迎订阅我的创作 18 元 / 月.
     </Text>
 
     <Grid Columns="auto,auto">
       <Rectangle Alignment="Left" Margin="0,20,0,0">
         <Stroke Width="2" Brush="#000"/>
-        <Text Font="Bold" FontSize="13" Value="Subscription" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+        <Text Font="Bold" FontSize="13" Value="订阅" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
         <Clicked Handler="{makeSubscribe}">
         </Clicked>
+        <WhilePressed>
+          <Scale Factor="0.98" Duration="0.1"/>
+        </WhilePressed>
       </Rectangle>
       <Rectangle Alignment="Left" Margin="20,20,0,0">
         <Stroke Width="2" Brush="#eee"/>
-        <Text Font="Bold" FontSize="13" Value="Restore" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
+        <Text Font="Bold" FontSize="13" Value="恢复" Alignment="Center" TextColor="#eee"  Margin="10, 5, 10, 5"/>
       </Rectangle>
     </Grid>
 
@@ -37,11 +40,11 @@
 
     <Text Font="Bold" FontSize="23" Value="Feedback" Alignment="Left" TextColor="#000"  Margin="0, 40, 15, 0"/>
     <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 5, 15, 0">
-      If you have any question, feel free to send me email!
+      如果你有任何的疑问，随时给我发邮件！
     </Text>
     <Rectangle Alignment="Left" Margin="0,20,0,0">
       <Stroke Width="2" Brush="#000"/>
-      <Text Font="Bold" FontSize="13" Value="Send Email" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
+      <Text Font="Bold" FontSize="13" Value="发送 Email" Alignment="Center" TextColor="#000"  Margin="10, 5, 10, 5"/>
       <Clicked>
         <LaunchEmail To="kevinchou.c@gmail.com" Subject="Producter Feedback" Message="Question..."/>
       </Clicked>
@@ -52,7 +55,7 @@
 
     <Text Font="Bold" FontSize="23" Value="About" Alignment="Left" TextColor="#000"  Margin="0, 40, 15, 0"/>
     <Text TextWrapping="Wrap" Font="Light" FontSize="12" Alignment="Left" TextColor="#555"  Margin="0, 10, 15, 0">
-      This app was made for Producter with Fuse. You can keep up with me in ways blow.
+      你也可以通过以下方式与我联系
     </Text>
     <Text TextWrapping="Wrap" Font="Regular" FontSize="12" Alignment="Left" TextColor="#000"  Margin="0, 10, 15, 0">
       Weibo http://weibo.com/kevinzhow

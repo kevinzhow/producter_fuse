@@ -1,5 +1,9 @@
 {
-  "RootNamespace":"",
+  "ReferenceUnoCore": true,
+  "Version": "1.0",
+  "Copyright": "Catch Inc (C) 2016",
+  "VersionCount": 1,
+  "Publisher": "kevinzhow.Producter",
   "Mobile": {
       "ShowStatusbar": false,
       "RunsInBackground": true,
