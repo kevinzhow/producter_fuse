@@ -265,7 +265,7 @@ public class CloudKit {
 
       subscription.setNotificationInfo(notificationInfo);
 
-      CKDatabase publicDatabase = defaultContainer.publicCloudDatabase();
+      // CKDatabase publicDatabase = defaultContainer.publicCloudDatabase();
 
     }
 }

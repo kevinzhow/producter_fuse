@@ -4,6 +4,22 @@
   "Mobile": {
       "ShowStatusbar": false
   },
+  "iOS": {
+      "Icons": {
+        "iPhone_29_2x": "assets/icon/Desktop58.png",
+        "iPhone_29_3x": "assets/icon/Desktop87.png",
+        "iPhone_40_2x": "assets/icon/Desktop80.png",
+        "iPhone_40_3x": "assets/icon/Desktop120.png",
+        "iPhone_60_2x": "assets/icon/Desktop120.png",
+        "iPhone_60_3x": "assets/icon/Desktop180.png",
+        "iPad_29_1x": "assets/icon/Desktop29.png",
+        "iPad_29_2x": "assets/icon/Desktop58.png",
+        "iPad_40_1x": "assets/icon/Desktop40.png",
+        "iPad_40_2x": "assets/icon/Desktop80.png",
+        "iPad_76_1": "assets/icon/Desktop76.png",
+        "iPad_76_2x": "assets/icon/Desktop152.png"
+      }
+  },
   "Packages": [
         "Fuse.PushNotifications",
         "Fuse.Animations",
